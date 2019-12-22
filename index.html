@@ -20,7 +20,11 @@
 
   <!-- Custom styles for this template -->
   <link href="css/landing-page.min.css" rel="stylesheet">
-
+  <style>
+    table, th, td {
+      border: 1px solid black;
+    }
+    </style>
 </head>
 
 <body>
@@ -79,8 +83,34 @@
   <!-- Image Showcases -->
   <section class="showcase">
     <div class="container-fluid p-0">
-      <div class="row no-gutters">
 
+      <div class="row no-gutters">
+        <div class="col-lg-6 mx-auto showcase-text">
+          <h2>Pool available</h2>
+            <table style="width:100%">
+              <tr>
+                <th class="lead mb-0"> <h5>ID Pool</h5></th>
+                <th class="lead mb-0"><h5>Tax-Fixed</h5></th>
+                <th class="lead mb-0"><h5>Tax-Ratio</h5></th>
+                <th class="lead mb-0"><h5>Status</h5></th> 
+              </tr>
+              <tr>
+                <td class="lead mb-0">af118953f98d044e190ce44d4f99c159d2b4e8c81f40308f42ddb29bf2df0ca1</td>
+                <td class="lead mb-0">450</tdclass="lead mb-0">
+                <td class="lead mb-0">5%</td>
+                <td class="lead mb-0" style="background-color: MediumSeaGreen;">ONLINE</td>
+              </tr>
+              <tr>
+                <td class="lead mb-0">bc275d03098ba2df6ddf5624943519ad0cee0569ea38ef9e6b66e774df65a880</td>
+                <td class="lead mb-0">2000</td>
+                <td class="lead mb-0">5%</td>
+                <td class="lead mb-0" style="background-color:Tomato;">ABANDODONED</td>
+              </tr>
+            </table>
+        </div>
+      </div>
+
+      <div class="row no-gutters">
         <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/procesador.png');"></div>
         <div class="col-lg-6 order-lg-1 my-auto showcase-text">
           <h2>Running 24 hours 7 days a week</h2>
