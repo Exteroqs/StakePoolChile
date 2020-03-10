@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="es" xml:lang="es">
+	<head>
+		<title>🦜 TricahuePool</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a id="logo">🦜 Tutoriales</a></h1>
+
+					<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Inicio</a></li>
+							<li class="current">
+								<a >Informacion y Tutoriales</a>
+								<ul>
+									<li><a>Sobre Delegacion</a>
+										<ul>
+											<li><a href="queesladelegacion.html">¿Que es la delegacion?</a></li>
+											<li><a href="comodelegar.html">¿Como Puedo Delegar?</a></li>
+										</ul>
+									</li>
+									<li ><a>Tutoriales Tecnicos</a>
+										<ul>
+											<li><a href="tjormunsystemd.html">jormungandr con Systemd</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li><a>Mis Programas</a>
+							<ul>
+								<li><a href="waira.html">Waira</a></li>
+							</ul>
+							</li>
+							<li><a>Sobre TricahuePool</a>
+								<ul>
+								<li><a href="activitynews.html">Actividad del Pool</a></li>	
+								<li><a href="mimaquina.html">Mi Pool</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+				</div>
+
+			<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+                            
+							<!-- Content -->
+
+								<article>
+									<header>
+										<h2 style="text-align: center;" >¿Como Delegar?</h2>
+                                    </header>
+                                    
+
+<p>La delegación actualmente solo está habilitada en testnet Shelley y se puede realizar usando sus respectivas wallet testnet Daedalus y Yoroi. Hay que tener en cuenta que para poder participar en la testnet Shelley has de haber tenido tus ADAs en una de estas billeteras de la Mainet (Red Principal) el día 29 de noviembre del 2019, que fue la fecha que se hizo una copia (snapshot) de la red principal para pasarla a la red testnet. Las billeteras testnet daedalus y Yoroi las puedes descargar de la <a href="https://staking.cardano.org/en/delegation/">página oficial</a>.</p>
+<p>Descargada la billetera de tu preferencia.</p>
+<h3>Daedalus</h3>
+<p>Daedalus es una billetera de nodo completo y trabaja directamente sobre la cadena de bloques sin ningún intermediario, por ese motivo ofrece cierto grado de seguridad, el unico inconveniente es que deberás descargar toda la cadena de bloques en tu pc antes de poder trabajar, si tu pc tiene una conexión lenta o no tienes mucho espacio de almacenamiento entonces puedes probar la billetera liviana de Yoroi.</p>
+<span class="image featured"><img src="images/descargadaedalus.jpg" alt="" /></span>
+<h3>Yoroi</h3>
+<p>Yoroi es una billetera liviana que trabaja tanto en exploradores web como en dispositivos móviles, dentro de sus ventajas esta su rápida sincronización debido a que se conecta a los servidores de EMURGO para tener acceso a la cadena de bloques de Cardano, de esta manera el usuario no necesita descargar toda la cadena de bloques para trabajar en ella.</p>
+<span class="image featured"><img src="images/descargayoroi.jpg" alt="" /></span>
+<p>Después de instalarla si estas usando daedalus, deberás esperar a que sincronice y en el caso de que no lo hayas hecho antes (tanto Yoroi como Daedalus), deberás restaurar tu billetera como lo harías en cualquier billetera en la red principal usando las mismas palabras claves de tu billetera de la mainet donde tenías tus ADAs el día del snapshot (recuerda que la testnet es una copia de la red principal).</p>
+<blockquote>
+<p>Si deseas una billetera más rápida tienes la opción de usar Yoroi, la tienes como extensión para explorador web o en versión para móvil</p>
+</blockquote>
+<p>Una vez restaurada tu billetera, podrás ver el mismo saldo que tenías el día del snapshot, con ese saldo puedes delegar en tu pool que sea de tu preferencia</p>
+<blockquote>
+<p>Recuerda que solo las recompensas (Reward) ganadas por delegación se incorporaran a tu billetera de la red principal una vez terminada la fase testnet</p>
+</blockquote>
+<p>A continuación, se mostrara paso a paso como realizar el procesos de delegacion usando la extensión de Yoroi para explorador web.</p>
+<p>Primero vamos a la pestaña de "Delegación (Simple)".</p>
+<span class="image featured"><img src="images/delegyoroi1.jpg" alt="" /></span>
+<p>Una vez ahí podemos buscar hacia abajo el Pool de nuestra preferencia en la lista de Pools disponibles o si lo deseas busca el Pool directamente en la barra de busqueda, como se puede ver en este ejemplo buscamos a TricahuePool por su ticket TCHP, una vez encontrado haces clic en "DELEGATE", aceptas el cambio y listo.</p>
+<span class="image featured"><img src="images/delegyoroi2.jpg" alt="" /></span>
+<p>Una vez realizada la delegación vas a la pestaña "Tablero de Control" en ella se mostrara la información del Pool al que has delegado así como los Reward (recompensas) recibidos por éste, Las recompensas comenzaran a llegar una vez pasada 2 epocas, solo si el Pool tiene suficientes delegantes como para permitirle poder firmar bloques, en la red Shelley dos epocas es equivalente a 2 dias (una epoca son 24 horas).</p>
+<span class="image featured"><img src="images/delegyoroi3.jpg" alt="" /></span>
+<p>Si deseas ganar algo de ADAs además de apoyar un Pool, puedes elegir a los pool que cobren un porcentaje bajo de comisión.</p>
+<p> Un pool con una comisión del 5% significa que la otra parte (95%) ira destinada para los delegantes, las Pools también pueden cobrar una tarifa fija por época que generalmente se usa para asegurar un ingreso mínimo destinado a mantencion basica, por esta razón suele ser una tarifa baja generalmente menor a 500 ADAs.</p>
+<blockquote>
+<p>Un Pool con una tarifa baja no siempre es mejor, debes de tenerlo presente, si el operador del Pool no lo esta manteniendo adecuadamente, puede no firmar bloques de manera eficiente perdiendo alguno que otro y con ello las ganancias por epoca.</p>
+</blockquote>
+</article>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<div id="footer">
+<!-- Copyright -->
+<div class="copyright">
+    <ul class="menu">
+        <li>&copy; TricahuePool 2019. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a>
+    </ul>
+</div>
+
+</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

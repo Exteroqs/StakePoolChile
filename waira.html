@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="es" xml:lang="es">
+	<head>
+		<title>🦜 TricahuePool</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a id="logo">🦜 Programas</a></h1>
+
+					<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li ><a href="index.html">Inicio</a></li>
+							<li>
+								<a >Informacion y Tutoriales</a>
+								<ul>
+									<li><a >Sobre Delegacion</a>
+										<ul>
+											<li><a href="queesladelegacion.html">¿Que es la delegacion?</a></li>
+											<li><a href="comodelegar.html">¿Como Puedo Delegar?</a></li>
+										</ul>
+									</li>
+									<li><a>Tutoriales Tecnicos</a>
+										<ul>
+											<li><a href="tjormunsystemd.html">jormungandr con Systemd</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li class="current"><a >Mis Programas</a>
+							<ul>
+								<li><a href="waira.html">Waira</a></li>
+							</ul>
+							</li>
+							<li><a>Sobre TricahuePool</a>
+								<ul>
+								<li><a href="activitynews.html">Actividad del Pool</a></li>	
+								<li><a href="mimaquina.html">Mi Pool</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+				</div>
+
+			<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+							<!-- Content -->
+
+								<article>
+									<header>
+										<h2>Waira</h2>
+										<p>Un Bot para gestionar Pool en linux.</p>
+									</header>
+
+									<span class="image featured"><img src="images/wairabanner.jpg" alt="" /></span>
+
+									<p>Waira es un Bot escrito en C++ que trabaja en conjunto con el jcli y jormungandr este ultimo debe correr bajo <a href="tjormunsystemd.html">systemd</a>. El Bot esta diseñado para mantener el nodo activo frente a inestabilidades de la red y actualizado cuando sale una versión , además posee una integración con pooltool para poder enviar tu HeightBlock a su pagina.
+										El Bot consta de un ejecutable "waira" y un archivo de configuración "waira.conf"</p>
+										<blockquote>
+										<p>Waira debe ir en la misma carpeta donde se encuentra el jormungandr, para que las actualizaciones automáticas funcionen</p>
+										<p>Jormungandr debe correr como un servicio en systemd, para que Waira pueda funcionar</p>
+										</blockquote>
+										<h3>El waira.conf</h3>
+										<p>Es un archivo de configuración en formato json, si al momento de ejecutar waira no se encuentra el archivo de configuración este creara uno por defecto. Sus parámetros son los siguientes:</p>
+										<p><strong>actualizaciones_automaticas</strong>: Es una opción booleana, un "true" habilita las actualizaciones automáticas y un "false" deshabilita las actualizaciones automáticas.</p>
+										<p><strong>intervalo_tiempo_consulta_actualizaciones_automaticas</strong>: Indica en minutos, cada cuanto tiempo se realizara una comprobación de actualizaciones, por defecto son 60 minutos.</p>
+										<p><strong>sendtip_pooltool</strong>: Esta es una opción booleana , un "true" habilita el envió de tu heightblock a pooltool y un "false" deshabilita el envió</p>
+										<p><strong>poolID</strong>: Aquí debes indica la id de tu pool</p>
+										<p><strong>userIDpooltool</strong>: Aqui debes indicar el id de tu usuario de pooltool</p>
+										<p><strong>port_rest:</strong> Aquí se debe indicar el puerto de tu rest</p>
+										<p><strong>intervalo_tiempo_consulta_rest</strong>: Indica en minutos, cada cuanto tiempo se realizara una consulta al rest para revisar los datos del pool, por defecto son 2 minutos</p>
+										<p><strong>retraso_tiempo_bloque_maximo_permitido</strong>: Indica en minutos, cuanto es el tiempo máximo de retraso permitido entre el bloque recibido y el tiempo de la máquina, si el tiempo es excedido, el pool se reinicia. Este sistema se usa en los casos en el que el pool quede pegado en algún bloque debido a un fork o por inestabilidad de la red. Por defecto son 10 minutos</p>
+										<p>La configuración debería verse como en la imagen de abajo</p>
+										<span class="image featured"><img src="images/wairaconf.jpg" alt="" /></span>
+										<p>El Codigo fuente estara a disposición en github una vez termine de realizar los ultimos ajustes y bueno, aprenda como manejar los repositorios de github</p>
+										<div class="box highlight">
+											<i class="icon brands fa-github"></i>
+											<h3> Pronto en github "Repo Waira"</h3>
+										</div>
+										<blockquote>
+											<p>Dentro de las características que deseo agregar a futuro es la capacidad de medir el performance del pool en base a sus bloques asignados vs los bloques creados.</p>
+								</blockquote>
+									</article>
+
+					
+							</div>
+						</div>
+					</section>
+	
+				<!-- Footer -->
+					<div id="footer">
+						<!-- Copyright -->
+						<div class="copyright">
+							<ul class="menu">
+								<li>&copy; TricahuePool 2019. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a>
+							</ul>
+						</div>
+	
+					</div>
+	
+			</div>
+	
+			<!-- Scripts -->
+				<script src="assets/js/jquery.min.js"></script>
+				<script src="assets/js/jquery.dropotron.min.js"></script>
+				<script src="assets/js/browser.min.js"></script>
+				<script src="assets/js/breakpoints.min.js"></script>
+				<script src="assets/js/util.js"></script>
+				<script src="assets/js/main.js"></script>
+	
+		</body>
+	</html>

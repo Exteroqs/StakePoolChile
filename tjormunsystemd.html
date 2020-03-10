@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="es" xml:lang="es">
+	<head>
+		<title>🦜 TricahuePool</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a id="logo">🦜 Tutoriales</a></h1>
+
+					<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li ><a href="index.html">Inicio</a></li>
+							<li>
+								<a class="current">Informacion y Tutoriales</a>
+								<ul>
+									<li><a>Sobre Delegacion</a>
+										<ul>
+											<li><a href="queesladelegacion.html">¿Que es la delegacion?</a></li>
+											<li><a href="comodelegar.html">¿Como Puedo Delegar?</a></li>
+										</ul>
+									</li>
+									<li><a>Tutoriales Tecnicos</a>
+										<ul>
+											<li><a href="tjormunsystemd.html">jormungandr con Systemd</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li><a>Mis Programas</a>
+							<ul>
+								<li><a href="waira.html">Waira</a></li>
+							</ul>
+							</li>
+							<li><a>Sobre TricahuePool</a>
+								<ul>
+								<li><a href="activitynews.html">Actividad del Pool</a></li>	
+								<li><a href="mimaquina.html">Mi Pool</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+				</div>
+
+			<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+							<!-- Content -->
+
+								<article>
+									<header>
+										<h2 style="text-align: center;" >Jormungander con Systemd</h2>
+										<p>Como hacer corre a jormungandr como un servicio del systema bajo Systemd.</p>
+									</header>
+
+									
+
+									<p>Systemd es un sistema para correr y gestionar servicios , en este manual aprenderas a convertir a jormungandr en un servicio del sistema esto te permitira manejarlo con mayor facilidad e incluso poder arrancarlo al inicio del sistema operativo.</p>
+									<h2>Archivo de configuracion</h2>
+									<p>Se procede a crear un archivo de configuracion para nuestro servicio, el que llamaremos "jormungandr.service" y lo guardaremos en la ruta "/etc/systemd/system/". Ejecutamos el editor de texto nano para poder crear un archivo en esa rutra</p>
+									<p><code>nano /etc/systemd/system/jormungandr.service</code></p>
+									<blockquote>
+									<p>recordar usar el comando en modo root (administrador)</p>
+									</blockquote>
+									<p>una vez ejecutado el comando se abrira la ventana del editor de texto. Aqui se debera ingresar los siguentes parametros</p>
+									<p style="background-color: beige">
+										<code >
+											[Unit]<br>
+									Description=jormungandr<br>
+									After=network.target<br>
+									[Service]<br>
+									WorkingDirectory=/ruta/donde/los/archivos<br>
+									Restart=on-success<br>
+									RestartSec=5<br>
+									ExecStart=/ruta/donde/los/archivos/jormungandr --config config-StakePool.yaml --secret node-secret.yaml --genesis-block-hash 8e4d2a343f3dcf9330ad9035b3e8d168e6728904262f2c434a4f8f934ec7b676<br>
+									ExecStop=/ruta/donde/los/archivos/jcli rest v0 shutdown get --host "http://127.0.0.1:3100/api"<br>
+									ExecStopPost=/bin/sleep 5<br>
+									KillMode=control-group<br>
+									LimitNOFILE=16384<br>
+									User=tuusuario<br>
+									Group=tuusuario<br>
+									[Install]<br>
+									WantedBy=multi-user.target<br>
+										</code></p>
+									<p>Deveria verse algo asi como en la imagen</p>
+									<span class="image featured"><img src="images/jormungandrservice.jpg" alt="" /></span>
+									<p><strong><em>Los parametros de importancia son explicados a continuacion:</em></strong></p>
+									<p><strong>Description=</strong> Es el nombre para identificar tu nodo, lo cita cuando ejecutas el servicio o lo detienes</p>
+									<p><strong>WorkingDirectory</strong>= Corresponde a la ruta del directorio de trabajo que es la ruta de la carpeta donde tienes tus ejecutables "jormundanr" y "jcli"</p>
+									<p><strong>ExecStart</strong>= Aqui es donde se introduce el comando de ejecucion de inicio del servicio, debe ir el archivo que se ejecutara (incluida su ruta) y sus parametros de ejecucion por ejemplo se requiere ejecutar el jormungandr , que esta en la carpeta "Nodo" del usuario "cardano" esta linea quedaria asi:</p>
+									<p><em>ExecStart=/home/cardano/Nodo/jormungandr --config config-StakePool.yaml --secret node-secret.yaml --genesis-block-hash 8e4d2a343f3dcf9330ad9035b3e8d168e6728904262f2c434a4f8f934ec7b676</em></p>
+									<blockquote>
+									<p>Todo debe estar en una sola linea, un salto de linea (ENTER) entre estos parametros generara un error</p>
+									</blockquote>
+									<p><strong>ExecStop=</strong> Igual que en el ExecStart, solo que aqui se introduce el comando de ejecucion que se usara para la detencion del servicio, desde el manual official se sugiere usar el comando "jcli rest v0 shutdown get --host "http://127.0.0.1:3100/api" para detener el nodo y es el que se usara en esta configuracion. Siguiendo el ejemplo anterior del usuario y carpeta, nuestra linea quedaria asi:</p>
+									<p><em>ExecStop=/home/cardano/Nodo/jcli rest v0 shutdown get --host "http://127.0.0.1:3100/api"</em></p>
+									<p><strong>ExecStopPost=</strong>Este comando se ejecuta despues del ExecStop y se usara para dar un tiempo de espera al nodo y asi pueda realizar su proceso de detencion correctamente. En esta configuracion se dejaron 5 segundos de espera, nuestra linea quedaria asi:</p>
+									<p><em>ExecStopPost=/bin/sleep 5</em></p>
+									<p><strong>KillMode=</strong> aqui se selecciona el modo en que se detendra el servicio se usa por defecto "control-group" el que una ves detenido el servicio (despues de haber ejecutado el ExecStop y ExecStopPost) cerrara a la fuerza los procesos abiertos restantes</p>
+									<p><strong>LimitNOFILE=</strong> Una configuracion muy importante, tiene relacion con la cantidad de archivos(procesos) que puede gestionar el servicio y evitar el tan famoso "too many open files" , esta configuracion se aplica unicamente al servicio y es independiente de la configuracion general del sistema, se usa el valor "16384" el cual no me ha dado problemas.</p>
+									<p><strong>User y Group=</strong> Estos dos parametros siven para determinar bajo que permisos se ejecutara el servicio, si no se pone un User y un Group por defecto se ejecutara en modo administrador, para nuestra seguridad en esta configuracion se ejecutara el jormungandr sin modo root , ya que no es necesario y podria generar algun hueco de seguridad. asi en estos dos debemos indicar que se ejecutaran en nuestro usuario que no tiene permisos root, siguiendo el ejemplo del usuario anterior, donde tenemos un usuario llamado "cardano" estas dos lineas quedaran asi:</p>
+									<p><em>User=cardano</em></p>
+									<p><em>Group=cardano</em></p>
+									<blockquote>
+									<p>Al ejecutar el comando "ls -la" (sin comillas) en tu terminal podras ver las propiedades y permisos de tus carpetas y tus archivos de la ruta que te encuentres. Puedes ver en tu carpeta donde tienes tu jormungandr en que permiso de usuario y grupo estas.</p>
+									</blockquote>
+									<p>Una vez ingresado correctamente tus parametros de configuracion, guarda tus datos que ingresaste en el archivo "jormungandr.service"</p>
+									<blockquote>
+									<p>En nano para guardar una modificacion se usa la combinacion de teclas "CTRL+o" y luego confirmas con un "ENTER" , para salir se usa "CTRL+x"</p>
+									</blockquote>
+									<h2>Ejecutando el servicio</h2>
+									<p>Una ves guardado los cambios de nuestro archivo de configuracion estamos listo para ejecutar nuestro servicio</p>
+									<h4>Iniciar el servicio</h4>
+									<p><code>systemctl start jormungandr</code></p>
+									<p>Podemos ver el estado del servicio con, el siguente comando:</p>
+									<h4>Estado del servicio</h4>
+									<p><code>systemctl status jormungandr</code></p>
+									<p>Si se desea parar el servicio, se usa el siguente:</p>
+									<h4>Detener el servicio</h4>
+									<p><code>systemctl stop jormungandr</code></p>
+									<p>Una vez que vemos que todo funciona bien, si se desea, podemos hacer que el servicio se ejecute cada vez que se inicie el sistema , esto se hace con :</p>
+									<p><code>systemctl enable jormungandr</code></p>
+									<p>Si se desea deshabilitar el servicio al inicio del sistema se usa:</p>
+									<p><code>systemctl disable jormungandr</code></p>
+									<p>y eso seria todo .</p>
+									<blockquote>
+									<p>Si te gusto mi contenido apoyarme delegando en mi pool TCHP</p>
+									</blockquote>
+									
+								</article>
+
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<div id="footer">
+					<!-- Copyright -->
+					<div class="copyright">
+						<ul class="menu">
+							<li>&copy; TricahuePool 2019. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a>
+						</ul>
+					</div>
+
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
