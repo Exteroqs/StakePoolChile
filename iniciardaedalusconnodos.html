@@ -36,7 +36,7 @@
 									<li><a>Tutoriales Tecnicos</a>
 										<ul>
                                             <li><a href="tjormunsystemd.html">Jormungandr con Systemd</a></li>
-                                            <li><a href="iniciardaedalusconnodos.html">Iniciar Daedalus Tesnet con/sin trushed peer</a></li>
+                                            <li><a href="iniciardaedalusconnodos.html">Iniciar Daedalus Testnet con/sin trusted peers</a></li>
 										</ul>
 									</li>
 								</ul>
@@ -66,13 +66,13 @@
                             
                             <article>
                                 <header>
-                                    <h2 style="text-align: center;" >Iniciar Daedalus Tesnet con/sin trushed peer</h2>
-                                    <p>En esta guía se enseña como disminuir los intentos de conexión con los trushed peer o sincronizar directamente con los nodos de la red .</p>
+                                    <h2 style="text-align: center;" >Iniciar Daedalus Testnet con/sin trusted peers</h2>
+                                    <p>En esta guía se enseña como disminuir los intentos de conexión con los trusted peers o sincronizar directamente con los nodos de la red .</p>
                                 </header>
 
 
-<p>A muchos nos ha pasado que cuando iniciamos la billetera Daedalus se nos queda pegado sincronizando infinitamente en la pantalla de carga, eso es debido a que aveces la billetera tiene problemas en conectar con los trushed peer oficiales, las causas de por que fallan los peer no se detallara aquí en el turorial.</p>
-<p>En la última versión de Daedalus se incorpora el cliente jormungander 0.8.13 para gestionar la sincronización con la cadena de bloques de Cardano, es un cliente más estable, pero tiene un pequeño talón de Aquiles , que por defecto cuando no puede conectar con un trushed peer realiza intentos indefinidamente con la esperanza de conseguir concretar su conexión, por lo que si intenta conectar con algún peer que está mal funcionando se quedara reintentando indefinidamente hasta que él pueda descargar los datos, para estos casos podemos agregar una configuración a la billetera para que evite realizar estos reintentos o limitarlos a un intento por trushed peer, eso puede quedar a criterio de cada uno, en el caso de que no quieras realizar intentos de conexión con los trushed peer, la billetera comenzara a sincronizarse con los nodos disponibles en la red Cardano, es un proceso más lento pero es más efectivo.</p>
+<p>A muchos nos ha pasado que cuando iniciamos la billetera Daedalus se nos queda pegado sincronizando infinitamente en la pantalla de carga, eso es debido a que aveces la billetera tiene problemas en conectar con los trusted peers oficiales, las causas de por que fallan los peers no se detallara aquí en el tutorial.</p>
+<p>En la última versión de Daedalus se incorpora el cliente jormungander 0.8.13 para gestionar la sincronización con la cadena de bloques de Cardano, es un cliente más estable, pero tiene un pequeño talón de Aquiles , que por defecto cuando no puede conectar con un trusted peers realiza intentos indefinidamente con la esperanza de conseguir concretar su conexión, por lo que si intenta conectar con algún peers que está mal funcionando se quedara reintentando indefinidamente hasta que él pueda descargar los datos, para estos casos podemos agregar una configuración a la billetera para que evite realizar estos reintentos o limitarlos a un intento por trusted peers, eso puede quedar a criterio de cada uno, en el caso de que no quieras realizar intentos de conexión con los trusted peers, la billetera comenzara a sincronizarse con los nodos disponibles en la red Cardano, es un proceso más lento pero es más efectivo.</p>
 <p>Este tutorial está hecho para usuarios de Windows, pero la configuración es aplicable para usuarios de Linux u otros sistemas, solo deberás buscar el archivo de configuración en tu sistema correspondiente.</p>
 <p>Primero debemos abrir el block de notas en modo administrador, busca el block de notas en tu barra de búsqueda y una vez sobre él haz CTRL+click derecho y te dará la opción para abrirlo en modo administrador.</p>
 <span class="image featured"><img src="images/cdae1.jpg" alt="" /></span>
@@ -84,11 +84,11 @@
 <span class="image featured"><img src="images/cdae2.jpg" alt="" /></span>
 <p>Una vez abierto se mostraran varias instrucciones amontonadas en el block de notas pero no te preocupes puesto que el block de notas de Windows no sabe ordenar esos formatos en JSON, si lo abres desde una distribución Linux es probable que se vea todo ordenado, lo importante aquí es poner la configuración donde debe ir, así que agregaremos la configuración :</p>
 <p><code>"max_bootstrap_attempts": 1</code></p>
-<p>Dentro de la sección "p2p", en este tutorial lo hemos seteado en 1 , que significa que hará un intento de conexión por cada trushed peer de la lista (que aparece en el archivo de configuración) antes de pasar a sincronizarse con los otros nodos de la red. Deberás colocarlo en la misma posición que aparece en la imagen respetando sus comas.</p>
+<p>Dentro de la sección "p2p", en este tutorial lo hemos seteado en 1 , que significa que hará un intento de conexión por cada trusted peers de la lista (que aparece en el archivo de configuración) antes de pasar a sincronizarse con los otros nodos de la red. Deberás colocarlo en la misma posición que aparece en la imagen respetando sus comas.</p>
 <span class="image featured"><img src="images/cdae3.jpg" alt="" /></span>
-<p>Si deseas saltarte los trushed peer y sincronizar directamente con los nodos de la red, que igual es recomendable en los casos que ya tengas gran parte de la cadena de bloques sincronizada, los podemos setear a cero.</p>
+<p>Si deseas saltarte los trusted peers y sincronizar directamente con los nodos de la red, que igual es recomendable en los casos que ya tengas gran parte de la cadena de bloques sincronizada, los podemos setear a cero.</p>
 <p><code>"max_bootstrap_attempts": 0</code></p>
-<p>Hay que recordar que al sincronizarse directamente con los nodos es un poco más lento, pero cuando los trushed peer dan problemas es más efectivo.</p>
+<p>Hay que recordar que al sincronizarse directamente con los nodos es un poco más lento, pero cuando los trusted peers dan problemas es más efectivo.</p>
 <p>Una vez seteada la configuración de tu preferencia (sea a 1 o a 0), se guardan los cambios y se abre la billetera Daedalus, Ahora solo queda esperar a que se cargue.</p>
 <p>Si seteaste el "max_bootstrap_attempts" a 0, una vez que comienza a sincronizar, en la parte del diagnóstico puedes ver los "Last network block" y los "Last synchronized block", estos últimos puedes ver que de apoco se van actualizando hasta alcanzar el valor de los "Last network block".</p>
 <span class="image featured"><img src="images/cdae5.jpg" alt="" /></span>
