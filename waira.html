@@ -76,10 +76,10 @@
 										El Bot consta de un ejecutable "waira" y un archivo de configuración "waira.conf"</p>
 										<blockquote>
 										<p>Waira debe ir en la misma carpeta donde se encuentra el jormungandr, para que las actualizaciones automáticas funcionen</p>
-										<p>Jormungandr debe correr como un servicio en systemd, para que Waira pueda funcionar</p>
+										<p>Jormungandr debe correr como un servicio en systemd, el nombre del servicio debe llamarse "jormungandr.service", para que Waira pueda funcionar</p>
 										</blockquote>
 										<h3>El waira.conf</h3>
-										<p>Es un archivo de configuración en formato json, si al momento de ejecutar waira no se encuentra el archivo de configuración este creara uno por defecto. Sus parámetros son los siguientes:</p>
+										<p>Es un archivo de configuración en formato JSON, si al momento de ejecutar waira no se encuentra el archivo de configuración este creara uno por defecto. Sus parámetros son los siguientes:</p>
 										<p><strong>actualizaciones_automaticas</strong>: Es una opción booleana, un "true" habilita las actualizaciones automáticas y un "false" deshabilita las actualizaciones automáticas.</p>
 										<p><strong>intervalo_tiempo_consulta_actualizaciones_automaticas</strong>: Indica en minutos, cada cuanto tiempo se realizara una comprobación de actualizaciones, por defecto son 60 minutos.</p>
 										<p><strong>sendtip_pooltool</strong>: Esta es una opción booleana , un "true" habilita el envió de tu heightblock a pooltool y un "false" deshabilita el envió</p>
@@ -90,13 +90,39 @@
 										<p><strong>retraso_tiempo_bloque_maximo_permitido</strong>: Indica en minutos, cuanto es el tiempo máximo de retraso permitido entre el bloque recibido y el tiempo de la máquina, si el tiempo es excedido, el pool se reinicia. Este sistema se usa en los casos en el que el pool quede pegado en algún bloque debido a un fork o por inestabilidad de la red. Por defecto son 10 minutos</p>
 										<p>La configuración debería verse como en la imagen de abajo</p>
 										<span class="image featured"><img src="images/wairaconf.jpg" alt="" /></span>
-										<p>El Codigo fuente estara a disposición en github una vez termine de realizar los ultimos ajustes y bueno, aprenda como manejar los repositorios de github</p>
+										<h3>Ejecución</h3>
+										<p>Antes de ejecutar el programa es necesario ubicar el archivo "waira" dentro de la carpeta donde se encuentra el jormungandr y el jcli. Para ejecutar Waira debes hacerlo en modo administrador para que pueda interactuar con Systemd</p>
+										<p><code>sudo ./waira</code></p>
+										<p>En caso de que falte algún requisito para poder funcionar correctamente el programa de lo indicara al inicio de este, como se ve en este ejemplo  </p>
+										<p style="background-color: beige"><code>      ****Iniciando Waira**** <br>
+											-Programa de Gestión para Nodos de Cardano en Linux- <br>
+											<br>
+											Unit jormungandr.service could not be found. <br>
+											* No se encontro el servicio jormungandr.service en systemd <br>
+											</code></p>
+										<p>También puedes ejecutar a Waira en segundo plano con: </p>
+										<p><code>sudo ./waira>waira.log &</code></p>
+										<p>De esta manera estamos guardando todos los registros del programa que suceden en segundo plano en el archivo waira.log, ahora en la terminal haciendo un "cat" en el archivo waira.log podremos ver todo lo registrado </p>
+										<p><code>cat waira.log</code></p>
+										<p>Obtendrás algo similar a la imagen de abajo</p>
+										<span class="image featured"><img src="images/catwaira.jpg" alt="" /></span>
+										<h3>Detener el proceso de segundo plano</h3>
+										<p>Si deseas eliminar el proceso que está en segundo plano puedes usar htop para encontrarlo y eliminarlo, lo puedes abrir escribiendo htop en la terminal, si no está disponible deberás instalarlo con un simple</p>
+										<p><code>sudo apt install htop</code></p>
+										<p>Ahora que ya lo tienes instalado, lo haces correr desde la terminar en modo administrador</p>
+										<p><code>sudo htop</code></p>
+										<p>Para buscar nuestro proceso oprimes F4 y escribe "./waira" tal como se ve en la imagen</p>
+										<span class="image featured"><img src="images/htopwaira.jpg" alt="" /></span>
+										<p>Ahora que lo encontraste presiona ENTER para seleccionar, luego oprimes F9 para seleccionar el modo KILL que es para detener procesos, éste despliega un menú de opciones puedes elegir el que se ve en la imagen</p>
+										<span class="image featured"><img src="images/htopkill.jpg" alt="" /></span>
+										<p>Oprimes ENTER y listo, si lo buscas nuevamente ya no debería estar</p>
+										<p>El Código de este programa lo puedes descargar de Github</p>
 										<div class="box highlight">
 											<i class="icon brands fa-github"></i>
-											<h3> Pronto en github "Repo Waira"</h3>
+											<h3> <a href="https://github.com/Exteroqs/Waira">Github "Repo Waira"</a> </h3>
 										</div>
 										<blockquote>
-											<p>Dentro de las características que deseo agregar a futuro es la capacidad de medir el performance del pool en base a sus bloques asignados vs los bloques creados.</p>
+											<p>Dentro de las características que deseo agregar a futuro  (en el caso de que tenga suficiente stake para firmar un bloque y poder testearlo) es la capacidad de medir el performance del pool en base a sus bloques asignados vs los bloques creados y actualizar el stake en periodos donde no tenga asignado firmas de bloque.</p>
 								</blockquote>
 									</article>
 
