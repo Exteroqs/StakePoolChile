@@ -72,7 +72,7 @@
 
 									<span class="image featured"><img src="images/wairabanner.jpg" alt="" /></span>
 
-									<p>Waira es un Bot escrito en C++ que trabaja en conjunto con el jcli y jormungandr este ultimo debe correr bajo <a href="tjormunsystemd.html">systemd</a>. El Bot esta diseñado para mantener el nodo activo frente a inestabilidades de la red y actualizado cuando sale una versión , además posee una integración con pooltool para poder enviar tu HeightBlock a su pagina.
+									<p>Waira es un Bot escrito en C++ que trabaja en conjunto con el jcli y jormungandr este ultimo debe correr bajo <a href="tjormunsystemd.html">Systemd</a>. El Bot esta diseñado para mantener el nodo activo frente a inestabilidades de la red y actualizado cuando sale una versión , además posee una integración con pooltool para poder enviar tu HeightBlock a su pagina.
 										El Bot consta de un ejecutable "waira" y un archivo de configuración "waira.conf"</p>
 										<blockquote>
 										<p>Waira debe ir en la misma carpeta donde se encuentra el jormungandr, para que las actualizaciones automáticas funcionen</p>
@@ -93,14 +93,34 @@
 										<h3>Ejecución</h3>
 										<p>Antes de ejecutar el programa es necesario ubicar el archivo "waira" dentro de la carpeta donde se encuentra el jormungandr y el jcli. Para ejecutar Waira debes hacerlo en modo administrador para que pueda interactuar con Systemd</p>
 										<p><code>sudo ./waira</code></p>
-										<p>En caso de que falte algún requisito para poder funcionar correctamente el programa de lo indicara al inicio de este, como se ve en este ejemplo  </p>
+										<p>En caso de que falte algún requisito para poder funcionar correctamente el programa lo indicara al inicio de éste, como se ve en este ejemplo  </p>
 										<p style="background-color: beige"><code>      ****Iniciando Waira**** <br>
 											-Programa de Gestión para Nodos de Cardano en Linux- <br>
 											<br>
 											Unit jormungandr.service could not be found. <br>
 											* No se encontro el servicio jormungandr.service en systemd <br>
 											</code></p>
-										<p>También puedes ejecutar a Waira en segundo plano con: </p>
+										<p>Si todo funciona ok, deberías ver lo siguiente</p>
+										<p style="background-color: beige">     ****Iniciando Waira**** <br>
+											-Programa de Gestion para Nodos de Cardano en Linux- <br>
+											<br>
+											* El servicio jormungandr.service en systemd existe <br>
+											* Jcli encontrado <br>
+											* Archivo de configuracion "waira.conf" encontrado <br>
+											* Proceso de configuracion terminado * <br>
+											<br>
+												  **Comenzando monitoreo** <br>
+											----------jormungandr 0.8.14-9ca427ef------------ <br>
+											 El Pool Funciona Bien <br>
+											 Mi lastBlockDate: 90.6518  (15% Epoca Completada) <br>
+											 Mi HeightBlock: 298928   |  Pooltool HeightBlock:298929 <br>
+											 Tiempo en linea: 53701 segundos <br>
+											 % de Tiempo Operativo por Epoca: <br>
+											 Detectada Nueva Epoca, Reiniciando el Conteo <br>
+											------------------------------------------------- <br>
+											</p>
+										<p>Para detener el programa solo debes presionar CRTL+C y este se cerrara</p>
+										<p>Una vez que ves que todo funciona bien, si lo deseas, puedes dejar a Waira corriendo en segundo plano con: </p>
 										<p><code>sudo ./waira>waira.log &</code></p>
 										<p>De esta manera estamos guardando todos los registros del programa que suceden en segundo plano en el archivo waira.log, ahora en la terminal haciendo un "cat" en el archivo waira.log podremos ver todo lo registrado </p>
 										<p><code>cat waira.log</code></p>
@@ -115,8 +135,8 @@
 										<span class="image featured"><img src="images/htopwaira.jpg" alt="" /></span>
 										<p>Ahora que lo encontraste presiona ENTER para seleccionar, luego oprimes F9 para seleccionar el modo KILL que es para detener procesos, éste despliega un menú de opciones puedes elegir el que se ve en la imagen</p>
 										<span class="image featured"><img src="images/htopkill.jpg" alt="" /></span>
-										<p>Oprimes ENTER y listo, si lo buscas nuevamente ya no debería estar</p>
-										<p>El Código de este programa lo puedes descargar de Github</p>
+										<p>Oprimes ENTER y listo, si lo buscas nuevamente ya no debería estar.</p>
+										<p>El Código de este programa lo puedes descargar de Github.</p>
 										<div class="box highlight">
 											<i class="icon brands fa-github"></i>
 											<h3> <a href="https://github.com/Exteroqs/Waira">Github "Repo Waira"</a> </h3>
