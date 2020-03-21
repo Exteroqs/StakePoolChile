@@ -74,10 +74,10 @@
 
 									<p>Systemd es un sistema para correr y gestionar servicios en Linux, en este manual aprenderás a convertir a jormungandr en un servicio del sistema esto te permitirá manejarlo con mayor facilidad e incluso poder arrancarlo automaticamente al inicio del sistema operativo.</p>
 									<h2>Archivo de configuración</h2>
-									<p>Se procede a crear un archivo de configuración para nuestro servicio, el que llamaremos "jormungandr.service" y lo guardaremos en la ruta "/etc/systemd/system/". Ejecutamos el editor de texto nano para poder crear un archivo en esa ruta.</p>
-									<p><code>nano /etc/systemd/system/jormungandr.service</code></p>
+									<p>Se procede a crear un archivo de configuración para nuestro servicio, el que llamaremos "jormungandr.service" y lo guardaremos en la ruta "/etc/systemd/system/". Ejecutamos el editor de texto nano en modo administrador para poder crear un archivo en esa ruta.</p>
+									<p><code>sudo nano /etc/systemd/system/jormungandr.service</code></p>
 									<blockquote>
-									<p>Recuerda usar el comando en modo root (administrador)</p>
+									<p>Recuerda usar el editor de texto de tu preferencia en modo root (administrador) o no podrás guardar los cambios hechos</p>
 									</blockquote>
 									<p>Una vez ejecutado el comando se abrirá la ventana del editor de texto. Aquí se deberá ingresar los siguientes parámetros.</p>
 									<p style="background-color: beige">
@@ -102,7 +102,7 @@
 										<blockquote>
 											<p>Procura poner la ruta donde se encuentran tus archivos</p>
 											</blockquote>
-									<p>Deveria verse algo asi como en la imagen</p>
+									<p>Debería verse algo asi como en la imagen</p>
 									<span class="image featured"><img src="images/jormungandrservice.jpg" alt="" /></span>
 									<p><strong><em>Los parámetros de importancia son explicados a continuación:</em></strong></p>
 									<p><strong>Description=</strong> Es el nombre para identificar tu nodo, lo cita cuando ejecutas el servicio o lo detienes.</p>
@@ -124,24 +124,24 @@
 									<blockquote>
 									<p>Al ejecutar el comando "ls -la" (sin comillas) en tu terminal podrás ver las propiedades y permisos de tus carpetas y tus archivos de la ruta que te encuentres. Puedes ver en tu carpeta donde tienes tu jormungandr en que permiso de usuario y grupo estas.</p>
 									</blockquote>
-									<p>Una vez ingresado correctamente tus parámetros de configuración, guarda tus datos que ingresaste en el archivo "jormungandr.service".</p>
+									<p>Una vez ingresado correctamente tus parámetros de configuración, procede a guardar tus cambios del archivo "jormungandr.service".</p>
 									<blockquote>
 									<p>En nano para guardar una modificación se usa la combinación de teclas "CTRL+o" y luego confirmas con un "ENTER”, para salir se usa "CTRL+x".</p>
 									</blockquote>
 									<h2>Ejecutando el servicio</h2>
-									<p>Una vez guardado los cambios de nuestro archivo de configuración estamos listos para ejecutar nuestro servicio.</p>
+									<p>Una vez guardado los cambios de nuestro archivo de configuración estamos listos para ejecutar nuestro servicio, recuerda ejecutar siempre en modo administrador los comandos de a continuación, en ubuntu por ejemplo se antepone un sudo para ejecutar algo en modo administrador.</p>
 									<h4>Iniciar el servicio</h4>
-									<p><code>systemctl start jormungandr</code></p>
+									<p><code>sudo systemctl start jormungandr</code></p>
 									<p>Podemos ver el estado del servicio con el siguiente comando:</p>
 									<h4>Estado del servicio</h4>
-									<p><code>systemctl status jormungandr</code></p>
+									<p><code>sudo systemctl status jormungandr</code></p>
 									<p>Si se desea parar el servicio, se usa el siguente:</p>
 									<h4>Detener el servicio</h4>
-									<p><code>systemctl stop jormungandr</code></p>
+									<p><code>sudo systemctl stop jormungandr</code></p>
 									<p>Una vez que vemos que todo funciona bien, si se desea, podemos hacer que el servicio se ejecute cada vez que se inicie el sistema, esto se hace con:</p>
-									<p><code>systemctl enable jormungandr</code></p>
+									<p><code>sudo systemctl enable jormungandr</code></p>
 									<p>Si se desea deshabilitar el servicio al inicio del sistema se usa:</p>
-									<p><code>systemctl disable jormungandr</code></p>
+									<p><code>sudo systemctl disable jormungandr</code></p>
 									<p>y eso seria todo .</p>
 									<blockquote>
 										<p>Si deseas apoyarme para seguir creando mas contenido en español te invito a delegar en mi Pool</p>
