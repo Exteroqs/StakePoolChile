@@ -74,10 +74,20 @@
 
 									<p>Waira es un Bot escrito en C++ que trabaja en conjunto con el jcli y jormungandr este ultimo debe correr bajo <a href="tjormunsystemd.html">Systemd</a>. El Bot esta diseñado para mantener el nodo activo frente a inestabilidades de la red y actualizado cuando sale una nueva versión del jormungandr, además posee una integración con pooltool para poder enviar tu HeightBlock a su pagina.
 										El Bot consta de un ejecutable "waira" y un archivo de configuración "waira.conf"</p>
+										
+										
+										<p>El Código de este programa lo puedes descargar de Github.</p>
+										<div class="box highlight">
+											<i class="icon brands fa-github"></i>
+											<h3> <a href="https://github.com/Exteroqs/Waira">Github "Repo Waira"</a> </h3>
+										</div>
+
 										<blockquote>
 										<p>Waira debe ir en la misma carpeta donde se encuentra el jormungandr y el jcli, para que las actualizaciones automáticas funcionen</p>
 										<p>Jormungandr debe correr como un servicio bajo <a href="tjormunsystemd.html">Systemd</a>, el nombre del servicio debe llamarse "jormungandr.service", para que Waira pueda funcionar</p>
 										</blockquote>
+
+
 										<h3>El waira.conf</h3>
 										<p>Es un archivo de configuración en formato JSON, si al momento de ejecutar waira no se encuentra el archivo de configuración este creara uno por defecto. Sus parámetros son los siguientes:</p>
 										<p><strong>actualizaciones_automaticas</strong>: Es una opción booleana, un "true" habilita las actualizaciones automáticas y un "false" deshabilita las actualizaciones automáticas.</p>
@@ -136,11 +146,10 @@
 										<p>Ahora que lo encontraste presiona ENTER para seleccionar, luego oprimes F9 para seleccionar el modo KILL que es para detener procesos, éste despliega un menú de opciones puedes elegir el que se ve en la imagen</p>
 										<span class="image featured"><img src="images/htopkill.jpg" alt="" /></span>
 										<p>Oprimes ENTER y listo, si lo buscas nuevamente ya no debería estar.</p>
-										<p>El Código de este programa lo puedes descargar de Github.</p>
-										<div class="box highlight">
-											<i class="icon brands fa-github"></i>
-											<h3> <a href="https://github.com/Exteroqs/Waira">Github "Repo Waira"</a> </h3>
-										</div>
+										<blockquote>
+											<p>Para salir de htop debes apretar la tecla q</p>
+										</blockquote>
+										
 										<blockquote>
 											<p>Dentro de las características que deseo agregar a futuro  (en el caso de que tenga suficiente stake para firmar un bloque y poder testearlo) es la capacidad de medir el performance del pool en base a sus bloques asignados vs los bloques creados y actualizar el stake en periodos donde no tenga asignado firmas de bloque.</p>
 								</blockquote>
@@ -153,6 +162,12 @@
 	
 				<!-- Footer -->
 					<div id="footer">
+															<!-- Icons -->
+															<ul class="icons">
+																<li><a href="https://github.com/Exteroqs/Waira" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+																<li><a href="mailto:tricahuepool@protonmail.com" class="icon social fa-envelope"><span class="label">E-Mail</span></a></li>
+																<li><a href="https://vimeo.com/user110411817" class="icon brands fa-vimeo"><span class="label">Youtube</span></a></li>
+															</ul>
 						<!-- Copyright -->
 						<div class="copyright">
 							<ul class="menu">
