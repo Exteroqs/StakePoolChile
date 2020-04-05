@@ -73,7 +73,7 @@
 									<span class="image featured"><img src="images/wairabanner.jpg" alt="" /></span>
 
 									<p>Waira es un Bot escrito en C++ diseñado para distribuciones linux x86_64, trabaja en conjunto con el jcli y jormungandr este ultimo debe correr bajo <a href="tjormunsystemd.html">Systemd</a>. El Bot esta diseñado para mantener el nodo activo frente a inestabilidades de la red y actualizado cuando sale una nueva versión del jormungandr, además posee una integración con pooltool para poder enviar tu HeightBlock a su pagina.
-										El Bot consta de un ejecutable "waira" y un archivo de configuración "waira.conf"</p>
+										El Bot consta de un ejecutable "waira" y un archivo de configuración "waira.conf".</p>
 										
 										
 										<p>El Código de este programa lo puedes descargar de Github.</p>
@@ -83,7 +83,7 @@
 										</div>
 
 										<blockquote>
-										<p>Waira debe ir en la misma carpeta donde se encuentra el jormungandr y el jcli, para que las actualizaciones automáticas funcionen</p>
+										<p>Waira debe ir en la misma carpeta donde se encuentra el jormungandr y el jcli, para que las actualizaciones automáticas funcionen.</p>
 										<p>Jormungandr debe correr como un servicio bajo <a href="tjormunsystemd.html">Systemd</a>, el nombre del servicio debe llamarse "jormungandr.service", para que Waira pueda funcionar</p>
 										</blockquote>
 
@@ -92,25 +92,25 @@
 										<p>Es un archivo de configuración en formato JSON, si al momento de ejecutar waira no se encuentra el archivo de configuración este creara uno por defecto. Sus parámetros son los siguientes:</p>
 										<p><strong>actualizaciones_automaticas</strong>: Es una opción booleana, un "true" habilita las actualizaciones automáticas y un "false" deshabilita las actualizaciones automáticas.</p>
 										<p><strong>intervalo_tiempo_consulta_actualizaciones_automaticas</strong>: Indica en minutos, cada cuanto tiempo se realizara una comprobación de actualizaciones, por defecto son 60 minutos.</p>
-										<p><strong>sendtip_pooltool</strong>: Esta es una opción booleana , un "true" habilita el envió de tu heightblock a pooltool y un "false" deshabilita el envió</p>
-										<p><strong>poolID</strong>: Aquí debes indica la id de tu pool</p>
-										<p><strong>userIDpooltool</strong>: Aqui debes indicar el id de tu usuario de pooltool</p>
-										<p><strong>port_rest:</strong> Aquí se debe indicar el puerto de tu rest</p>
-										<p><strong>intervalo_tiempo_consulta_rest</strong>: Indica en minutos, cada cuanto tiempo se realizara una consulta al rest para revisar los datos del pool, por defecto son 2 minutos</p>
-										<p><strong>retraso_tiempo_bloque_maximo_permitido</strong>: Indica en minutos, cuanto es el tiempo máximo de retraso permitido entre el bloque recibido y el tiempo de la máquina, si el tiempo es excedido, el pool se reinicia. Este sistema se usa en los casos en el que el pool quede pegado en algún bloque debido a un fork o por inestabilidad de la red. Por defecto son 10 minutos</p>
-										<p>La configuración debería verse como en la imagen de abajo</p>
+										<p><strong>sendtip_pooltool</strong>: Esta es una opción booleana , un "true" habilita el envió de tu heightblock a pooltool y un "false" deshabilita el envió.</p>
+										<p><strong>poolID</strong>: Aquí debes indica la id de tu pool.</p>
+										<p><strong>userIDpooltool</strong>: Aqui debes indicar el id de tu usuario de pooltool.</p>
+										<p><strong>port_rest:</strong> Aquí se debe indicar el puerto de tu rest.</p>
+										<p><strong>intervalo_tiempo_consulta_rest</strong>: Indica en minutos, cada cuanto tiempo se realizara una consulta al rest para revisar los datos del pool, por defecto son 2 minutos.</p>
+										<p><strong>retraso_tiempo_bloque_maximo_permitido</strong>: Indica en minutos, cuanto es el tiempo máximo de retraso permitido entre el bloque recibido y el tiempo de la máquina, si el tiempo es excedido, el pool se reinicia. Este sistema se usa en los casos en el que el pool quede pegado en algún bloque debido a un fork o por inestabilidad de la red. Por defecto son 10 minutos.</p>
+										<p>La configuración debería verse como en la imagen de abajo.</p>
 										<span class="image featured"><img src="images/wairaconf.jpg" alt="" /></span>
 										<h3>Ejecución</h3>
-										<p>Antes de ejecutar el programa es necesario ubicar el archivo "waira" dentro de la carpeta donde se encuentra el jormungandr y el jcli. Para ejecutar Waira debes hacerlo en modo administrador para que pueda interactuar con Systemd</p>
+										<p>Antes de ejecutar el programa es necesario ubicar el archivo "waira" dentro de la carpeta donde se encuentra el jormungandr y el jcli. Para ejecutar Waira debes hacerlo en modo administrador para que pueda interactuar con Systemd.</p>
 										<p><code>sudo ./waira</code></p>
-										<p>En caso de que falte algún requisito para poder funcionar correctamente el programa lo indicara al inicio de éste, como se ve en este ejemplo  </p>
+										<p>En caso de que falte algún requisito para poder funcionar correctamente el programa lo indicara al inicio de éste, como se ve en este ejemplo.  </p>
 										<p style="background-color: beige"><code>      ****Iniciando Waira**** <br>
 											-Programa de Gestión para Nodos de Cardano en Linux- <br>
 											<br>
 											Unit jormungandr.service could not be found. <br>
 											* No se encontro el servicio jormungandr.service en systemd <br>
 											</code></p>
-										<p>Si todo funciona ok, deberías ver lo siguiente</p>
+										<p>Si todo funciona ok, deberías ver lo siguiente.</p>
 										<p style="background-color: beige">     ****Iniciando Waira**** <br>
 											-Programa de Gestion para Nodos de Cardano en Linux- <br>
 											<br>
@@ -129,21 +129,21 @@
 											 Detectada Nueva Epoca, Reiniciando el Conteo <br>
 											------------------------------------------------- <br>
 											</p>
-										<p>Para detener el programa solo debes presionar CRTL+C y este se cerrara</p>
+										<p>Para detener el programa solo debes presionar CRTL+C y este se cerrara.</p>
 										<p>Una vez que ves que todo funciona bien, si lo deseas, puedes dejar a Waira corriendo en segundo plano con: </p>
 										<p><code>sudo ./waira>waira.log &</code></p>
-										<p>De esta manera estamos guardando todos los registros del programa que suceden en segundo plano en el archivo waira.log, ahora en la terminal haciendo un "cat" en el archivo waira.log podremos ver todo lo registrado </p>
+										<p>De esta manera estamos guardando todos los registros del programa que suceden en segundo plano en el archivo waira.log, ahora en la terminal haciendo un "cat" en el archivo waira.log podremos ver todo lo registrado.</p>
 										<p><code>cat waira.log</code></p>
-										<p>Obtendrás algo similar a la imagen de abajo</p>
+										<p>Obtendrás algo similar a la imagen de abajo.</p>
 										<span class="image featured"><img src="images/catwaira.jpg" alt="" /></span>
 										<h3>Detener el proceso de segundo plano</h3>
-										<p>Si deseas eliminar el proceso que está en segundo plano puedes usar htop para encontrarlo y eliminarlo, lo puedes abrir escribiendo htop en la terminal, si no está disponible deberás instalarlo con un simple</p>
+										<p>Si deseas eliminar el proceso que está en segundo plano puedes usar htop para encontrarlo y eliminarlo, lo puedes abrir escribiendo htop en la terminal, si no está disponible deberás instalarlo con un simple:</p>
 										<p><code>sudo apt install htop</code></p>
-										<p>Ahora que ya lo tienes instalado, lo haces correr desde la terminar en modo administrador</p>
+										<p>Ahora que ya lo tienes instalado, lo haces correr desde la terminar en modo administrador.</p>
 										<p><code>sudo htop</code></p>
-										<p>Para buscar nuestro proceso oprimes F4 y escribe "./waira" tal como se ve en la imagen</p>
+										<p>Para buscar nuestro proceso oprimes F4 y escribe "./waira" tal como se ve en la imagen.</p>
 										<span class="image featured"><img src="images/htopwaira.jpg" alt="" /></span>
-										<p>Ahora que lo encontraste presiona ENTER para seleccionar, luego oprimes F9 para seleccionar el modo KILL que es para detener procesos, éste despliega un menú de opciones puedes elegir el que se ve en la imagen</p>
+										<p>Ahora que lo encontraste presiona ENTER para seleccionar, luego oprimes F9 para seleccionar el modo KILL que es para detener procesos, éste despliega un menú de opciones puedes elegir el que se ve en la imagen.</p>
 										<span class="image featured"><img src="images/htopkill.jpg" alt="" /></span>
 										<p>Oprimes ENTER y listo, si lo buscas nuevamente ya no debería estar.</p>
 										<blockquote>

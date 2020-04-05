@@ -77,7 +77,7 @@
 									<p>Se procede a crear un archivo de configuración para nuestro servicio, el que llamaremos "jormungandr.service" y lo guardaremos en la ruta "/etc/systemd/system/". Ejecutamos el editor de texto nano en modo administrador para poder crear un archivo en esa ruta.</p>
 									<p><code>sudo nano /etc/systemd/system/jormungandr.service</code></p>
 									<blockquote>
-									<p>Recuerda usar el editor de texto de tu preferencia en modo root (administrador) o no podrás guardar los cambios hechos</p>
+									<p>Recuerda usar el editor de texto de tu preferencia en modo root (administrador) o no podrás guardar los cambios hechos.</p>
 									</blockquote>
 									<p>Una vez ejecutado el comando se abrirá la ventana del editor de texto. Aquí se deberá ingresar los siguientes parámetros.</p>
 									<p style="background-color: beige">
@@ -100,8 +100,8 @@
 									WantedBy=multi-user.target<br>
 										</code></p>
 										<blockquote>
-											<p>Procura poner la ruta donde se encuentran tus archivos</p>
-											<p>En la parte del ExecStart, procura usar los nombres de tus archivos de configuración correspondiente para --config y --secret </p>
+											<p>Procura poner la ruta donde se encuentran tus archivos.</p>
+											<p>En la parte del ExecStart, procura usar los nombres de tus archivos de configuración correspondiente para --config y --secret. </p>
 											</blockquote>
 									<p>Debería verse algo asi como en la imagen</p>
 									<span class="image featured"><img src="images/jormungandrservice.jpg" alt="" /></span>
@@ -133,15 +133,17 @@
 									<p>Una vez guardado los cambios de nuestro archivo de configuración estamos listos para ejecutar nuestro servicio, recuerda ejecutar siempre en modo administrador los comandos de a continuación, en ubuntu por ejemplo se antepone un sudo para ejecutar algo en modo administrador.</p>
 									<h4>Iniciar el servicio</h4>
 									<p><code>sudo systemctl start jormungandr</code></p>
+									<blockquote><p>Ten en cuenta que al iniciar el servicio, estas iniciando el jormungandr.</p></blockquote>
 									<p>Podemos ver el estado del servicio con el siguiente comando:</p>
 									<h4>Estado del servicio</h4>
 									<p><code>sudo systemctl status jormungandr</code></p>
 									<blockquote>
-										<p>Cuando la pantalla no es suficiente grande para mostrar todo, este queda mostrando parte de su contenido que puedes explorar moviendo las teclas, si deseas salir de esa pantalla debes apretar la tecla q </p>
+										<p>Cuando la pantalla no es suficiente grande para mostrar todo, este queda mostrando parte de su contenido que puedes explorar moviendo las teclas, si deseas salir de esa pantalla debes apretar la tecla q .</p>
 									</blockquote>
 									<p>Si se desea parar el servicio, se usa el siguente:</p>
 									<h4>Detener el servicio</h4>
 									<p><code>sudo systemctl stop jormungandr</code></p>
+									<blockquote><p>Ten en cuenta que al detener el servicio, estas deteniendo el jormungandr.</p></blockquote>
 									<p>Una vez que vemos que todo funciona bien, si se desea, podemos hacer que el servicio se ejecute cada vez que se inicie el sistema, esto se hace con:</p>
 									<p><code>sudo systemctl enable jormungandr</code></p>
 									<p>Si se desea deshabilitar el servicio al inicio del sistema se usa:</p>
