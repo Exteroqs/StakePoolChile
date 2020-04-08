@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="es" xml:lang="es">
+	<head>
+		<title>🦜 TricahuePool</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a id="logo">🦜 Informacion y Tutoriales</a></h1>
+
+					<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li ><a href="index.html">Inicio</a></li>
+							<li>
+								<a class="current">Informacion y Tutoriales</a>
+								<ul>
+									<li><a>Sobre Delegacion</a>
+										<ul>
+											<li><a href="queesladelegacion.html">¿Que es la delegacion?</a></li>
+											<li><a href="comodelegar.html">¿Como Puedo Delegar?</a></li>
+										</ul>
+									</li>
+									<li><a>Tutoriales Tecnicos</a>
+										<ul>
+											<li><a href="tjormunsystemd.html">Jormungandr con Systemd</a></li>
+                                            <li><a href="iniciardaedalusconnodos.html">Iniciar Daedalus Testnet con/sin trusted peers</a></li>
+                                            <li><a href="compcardanonode.html">Compilando cardano-node</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li><a>Mis Programas</a>
+							<ul>
+								<li><a href="waira.html">Waira</a></li>
+							</ul>
+							</li>
+							<li><a>Sobre TricahuePool</a>
+								<ul>
+								<li><a href="activitynews.html">Actividad del Pool</a></li>	
+								<li><a href="mimaquina.html">Mi Pool</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+				</div>
+
+			<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+							<!-- Content -->
+
+								<article>
+									<header>
+										<h2 style="text-align: center;" >Compilando cardano-node</h2>
+										<p>Esta guía te enseña a compilar cardano-node versión haskell desde un computador con Linux basado en distribuciones Debian (Ubuntu, Kubuntu, debian9, entre otros).</p>
+									</header>
+<p>Esta guía se probó en un computador con Debian 9 y con la versión cardano-node-1.9.3.</p>
+<h3>Instalar Cabal y GHC</h3>
+<p>Antes de comenzar quisiera poner en contexto estos dos programas, ya que es bueno saber de sus funciones. El gch es un compilador para código Haskell como lo es g++ para el código C++ y cabal es un constructor de paquetes como podría ser el MakeFile en Linux. Ahora sabiendo esto, procedemos a agregar los repositorios.</p>
+<h4><u>Agregando los repositorios:</u></h4>
+<h5>Para versiones de Ubuntu:</h5>
+<p>Escribe en tu terminal.</p>
+<p><code>sudo add-apt-repository ppa:hvr/ghc</code></p>
+<h5>Para versiones Debian:</h5>
+<p>Escribe en tu terminal.</p>
+<p><code>sudo apt edit-sources</code></p>
+<p>Ahora deberas agregar al final del archivo una de las siguentes lineas.</p>
+<p><u>Para Debian 10:</u></p>
+<p><code>deb http://downloads.haskell.org/debian buster main</code></p>
+<p><u>Para Debian 9:</u></p>
+<p><code>deb http://downloads.haskell.org/debian stretch main</code></p>
+<p><u>Para Debian 8:</u></p>
+<p><code>deb http://downloads.haskell.org/debian jessie main</code></p>
+<p>Una vez agregada la línea correspondiente al de tu sistema operativo, guardas los cambios con CTRL+o luego ENTER y después cierras con CTRL+x . Luego instalas la llave GPG para que te permita actualizar e instalar los paquetes de sus repositorios.</p>
+<p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA3CBA3FFE22B574</code></p>
+<h3>Actualizar los Repositorios del sistema</h3>
+<p>Despúes de haber agregado el repositorio correspondiente a tu sistema, se procede a actualizar.</p>
+<p><code>sudo apt update</code></p>
+<h2>Instalando las Dependencias</h2>
+<p>Ahora procedemos a instalar las dependencias necesarias para compilar nuestro nodo, en tu terminal escribe.</p>
+<p><code>sudo apt install cabal-install-3.0 ghc-8.6.5 libsystemd-dev zlib1g-dev pkg-config libgmp-dev libssl-dev libtinfo-dev</code></p>
+<p>Ahora copiamos los Simlink de los programas que se instalaron en la carpeta /opt/cabal/bin/ y /opt/ghc/bin/ y los pasas a tu carpeta /usr/bin/ para que el sistema pueda detectarlos, también se copian los 3 ejecutables que están en la carpeta "8.6.5". Para ello en tu terminal cada línea de a continuación ejecútala por separado.</p>
+<p><code>sudo cp /opt/cabal/bin/cabal /usr/bin/cabal <br>
+sudo cp /opt/ghc/bin/ghc /usr/bin/ghc <br>
+sudo cp /opt/ghc/bin/ghci /usr/bin/ghci <br>
+sudo cp /opt/ghc/bin/ghc-pkg /usr/bin/ghc-pkg <br>
+sudo cp /opt/ghc/bin/haddock /usr/bin/haddock <br>
+sudo cp /opt/ghc/bin/runghc /usr/bin/runghc <br>
+sudo cp /opt/ghc/8.6.5/bin/hsc2hs /usr/bin/hsc2hs <br>
+sudo cp /opt/ghc/8.6.5/bin/hp2ps /usr/bin/hp2ps <br>
+sudo cp /opt/ghc/8.6.5/bin/hpc /usr/bin/hpc</code></p>
+<blockquote>
+<p>Si a futuro deseas borrar el paquete ghc-8.6.5 y cabal-install-3.0, debes eliminar esos archivos que se copiaron en la carpeta /usr/bin. En tal caso sería:</p>
+<p><code>sudo rm /usr/bin/cabal /usr/bin/ghc /usr/bin/ghci /usr/bin/ghc-pkg /usr/bin/haddock /usr/bin/runghc /usr/bin/hsc2hs /usr/bin/hp2ps /usr/bin/hpc</code></p>
+<p>*En la carpeta /usr/bin es donde se guardan los ejecutables de tus programas, los típicos que llamas cuando los escribes desde la terminal, así que procura solo borrar los archivos que pusiste ahí.</p>
+</blockquote>
+<p>Ahora comprobamos si Cabal se ha instalado y vemos que versión tenemos escribiendo en la terminal:</p>
+<p><code>cabal --version</code></p>
+<blockquote>
+<p>La versión necesaria para poder compilar nuestro cardano-node es de la 3.0.0 en adelante.</p>
+</blockquote>
+<h3>Compilando cardano-node</h3>
+<p>Primero deberás hacer una actualización de los repositorios de cabal.</p>
+<p><code>cabal update</code></p>
+<p>Ahora se descomprime el archivo cardano-node-X.X.X.tar.gz descargado de los <a href="https://github.com/input-output-hk/cardano-node/releases">repositorios de GitHub</a> , en este tutorial se descargó la versión "cardano-node-1.9.3.tar.gz”, al descomprimirse aparece una carpeta llamada cardano-node-1.9.3, dentro de esa carpeta hay otra carpeta con el nombre de cardano-node, es ahí donde debes entrar, y desde ahí dentro ejecutar en tu terminal el siguiente comando:</p>
+<p><code>cabal build</code></p>
+<p>Una vez que termine de compilar (según el computador el tiempo de compilación puede variar, en mi caso demoro 2 horas aprox con un procesador intel coreduo 2.2ghz), ve a la siguiente ubicación dentro de tu carpeta, para este ejemplo será la carpeta "cardano-node-1.9.3".</p>
+<p><code>cardano-node-1.9.3/dist-newstyle/build/x86_64-linux/ghc-8.6.5/cardano-node-1.9.3/x</code></p>
+<p>Ahí encontraras las carpetas:</p>
+<p><code>cardano-cli  cardano-node  chairman</code></p>
+<p>y dentro de ellas estarán los archivos compilados en sus respectivas carpetas "build".</p>
+<p>Felicidades tienes tu nodo Haskell compilado para tu sistema.</p>
+<p>Eso es todo por ahora.</p>
+
+<blockquote>Referencias:<br>https://downloads.haskell.org/~debian/<br>https://www.haskell.org/downloads/#minimal<br>https://www.haskell.org/cabal/<br>https://www.haskell.org/ghc/<br>https://github.com/input-output-hk/cardano-node/blob/master/README.md</blockquote>
+<blockquote>
+    <p>Si deseas apoyarme para seguir creando más contenido en español, puedes hacerlo delegando en mi Pool. </p>
+</blockquote>	
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<div id="footer">
+
+            <!-- Icons -->
+            <ul class="icons">
+                <li><a href="https://github.com/Exteroqs/Waira" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                <li><a href="mailto:tricahuepool@protonmail.com" class="icon social fa-envelope"><span class="label">E-Mail</span></a></li>
+                <li><a href="https://vimeo.com/tricahuepool" class="icon brands fa-vimeo"><span class="label">Youtube</span></a></li>
+            </ul>
+<!-- Copyright -->
+<div class="copyright">
+<ul class="menu">
+    <li>&copy; TricahuePool 2019. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a>
+</ul>
+</div>
+
+</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
