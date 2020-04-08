@@ -72,7 +72,7 @@
 									</header>
 <p>Esta guía se probó en un computador con Debian 9 y con la versión cardano-node-1.9.3.</p>
 <h3>Instalar Cabal y GHC</h3>
-<p>Antes de comenzar quisiera poner en contexto estos dos programas, ya que es bueno saber de sus funciones. El gch es un compilador para código Haskell como lo es g++ para el código C++ y cabal es un constructor de paquetes como podría ser el MakeFile en Linux. Ahora sabiendo esto, procedemos a agregar los repositorios.</p>
+<p>Antes de comenzar quisiera poner en contexto estos dos programas, ya que es bueno saber de sus funciones. El gch es un compilador para código Haskell como lo es g++ para el código C++ y cabal es un constructor de paquetes como podría ser el MakeFile en Linux. Ahora sabiendo esto, procedemos a agregar los repositorios nesesarios para instalar estos programas.</p>
 <h4><u>Agregando los repositorios:</u></h4>
 <h5>Para versiones de Ubuntu:</h5>
 <p>Escribe en tu terminal.</p>
@@ -80,17 +80,17 @@
 <h5>Para versiones Debian:</h5>
 <p>Escribe en tu terminal.</p>
 <p><code>sudo apt edit-sources</code></p>
-<p>Ahora deberas agregar al final del archivo una de las siguentes lineas.</p>
+<p>Ahora deberás agregar al final del archivo una de las siguentes lineas.</p>
 <p><u>Para Debian 10:</u></p>
 <p><code>deb http://downloads.haskell.org/debian buster main</code></p>
 <p><u>Para Debian 9:</u></p>
 <p><code>deb http://downloads.haskell.org/debian stretch main</code></p>
 <p><u>Para Debian 8:</u></p>
 <p><code>deb http://downloads.haskell.org/debian jessie main</code></p>
-<p>Una vez agregada la línea correspondiente al de tu sistema operativo, guardas los cambios con CTRL+o luego ENTER y después cierras con CTRL+x . Luego instalas la llave GPG para que te permita actualizar e instalar los paquetes de sus repositorios.</p>
+<p>Una vez agregada la línea correspondiente al de tu sistema operativo, guardas los cambios con CTRL+o luego ENTER y después cierras con CTRL+x . Luego instalas la llave GPG para que te permita actualizar e instalar los paquetes de sus repositorios, para ello escribe en tu terminal.</p>
 <p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA3CBA3FFE22B574</code></p>
-<h3>Actualizar los Repositorios del sistema</h3>
-<p>Despúes de haber agregado el repositorio correspondiente a tu sistema, se procede a actualizar.</p>
+<h3> <u>Actualizar los Repositorios del sistema</u> </h3>
+<p>Despúes de haber agregado el repositorio correspondiente a tu sistema, se procede a actualizar, en tu terminal escribe.</p>
 <p><code>sudo apt update</code></p>
 <h2>Instalando las Dependencias</h2>
 <p>Ahora procedemos a instalar las dependencias necesarias para compilar nuestro nodo, en tu terminal escribe.</p>
@@ -116,11 +116,12 @@ sudo cp /opt/ghc/8.6.5/bin/hpc /usr/bin/hpc</code></p>
 <p>La versión necesaria para poder compilar nuestro cardano-node es de la 3.0.0 en adelante.</p>
 </blockquote>
 <h3>Compilando cardano-node</h3>
-<p>Primero deberás hacer una actualización de los repositorios de cabal.</p>
+<p>Primero deberás hacer una actualización de los repositorios de cabal, en tu terminal escribe.</p>
 <p><code>cabal update</code></p>
 <p>Ahora se descomprime el archivo cardano-node-X.X.X.tar.gz descargado de los <a href="https://github.com/input-output-hk/cardano-node/releases">repositorios de GitHub</a> , en este tutorial se descargó la versión "cardano-node-1.9.3.tar.gz”, al descomprimirse aparece una carpeta llamada cardano-node-1.9.3, dentro de esa carpeta hay otra carpeta con el nombre de cardano-node, es ahí donde debes entrar, y desde ahí dentro ejecutar en tu terminal el siguiente comando:</p>
 <p><code>cabal build</code></p>
-<p>Una vez que termine de compilar (según el computador el tiempo de compilación puede variar, en mi caso demoro 2 horas aprox con un procesador intel coreduo 2.2ghz), ve a la siguiente ubicación dentro de tu carpeta, para este ejemplo será la carpeta "cardano-node-1.9.3".</p>
+<p>Por ejemplo debería verse algo similar en tu terminal: <br> <i>tuusuario@tuusuario:~/cualquier/ubicación/<strong>cardano-node-1.9.3/cardano-node</strong>$ <code>cabal build</code> </i> </p>
+<p>Una vez que termine de compilar (según el computador el tiempo de compilación puede variar, en mi caso demoro 2 horas aprox con un procesador intel coreduo 2.2ghz), ve a la siguiente ubicación dentro de tu carpeta, para este ejemplo es la carpeta "cardano-node-1.9.3".</p>
 <p><code>cardano-node-1.9.3/dist-newstyle/build/x86_64-linux/ghc-8.6.5/cardano-node-1.9.3/x</code></p>
 <p>Ahí encontraras las carpetas:</p>
 <p><code>cardano-cli  cardano-node  chairman</code></p>
