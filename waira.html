@@ -88,13 +88,16 @@
 										<p>Jormungandr debe correr como un servicio bajo <a href="tjormunsystemd.html">Systemd</a>, el nombre del servicio debe llamarse "jormungandr.service", para que Waira pueda funcionar</p>
 										</blockquote>
 
-
-										<h3>El waira.conf</h3>
+										<h3>Correr Jormungandr con Systemd</h3>
+										<p>Antes de ejecutar Waira, será necesario tener a Jormungandr como un servicio del sistema, esto se logra por medio de Systemd, el link para ese tutorial lo puedes leer <a href="tjormunsystemd.html">aqui</a>.
+											Al tener a Jormungandr como un servicio del sistema, facilita a Waira la capacidad de interactuar con él, permitiendo entre otras cosas, la acción de poder auto actualizarlo  cuando se liberan nuevas actualizaciones. Además, al ser un servicio del sistema este funcionara en segundo plano, siendo de ayuda para personas que acceden a sus servidores por SSH.
+											</p>
+										<h3>Sobre el archivo de configuración waira.conf</h3>
 										<p>Es un archivo de configuración en formato JSON, si al momento de ejecutar waira no se encuentra el archivo de configuración este creara uno por defecto. Sus parámetros son los siguientes:</p>
 										<blockquote>waira.conf debe estar en la misma carpeta donde se encuentra el ejecutable waira.</blockquote>
 										<p><strong>actualizaciones_automaticas</strong>: Es una opción booleana, un "true" habilita las actualizaciones automáticas y un "false" deshabilita las actualizaciones automáticas.</p>
 										<p><strong>intervalo_tiempo_consulta_actualizaciones_automaticas</strong>: Indica en minutos, cada cuanto tiempo se realizara una comprobación de actualizaciones, por defecto son 60 minutos.</p>
-										<p><strong>sendtip_pooltool</strong>: Esta es una opción booleana , un "true" habilita el envió de tu heightblock a pooltool y un "false" deshabilita el envió.</p>
+										<p><strong>sendtip_pooltool</strong>: Esta es una opción booleana , un "true" habilita el envió de tu heightblock y slots a pooltool y un "false" deshabilita el envió.</p>
 										<p><strong>poolID</strong>: Aquí debes indica la id de tu pool.</p>
 										<p><strong>userIDpooltool</strong>: Aqui debes indicar el id de tu usuario de pooltool.</p>
 										<p><strong>port_rest:</strong> Aquí se debe indicar el puerto de tu rest.</p>
@@ -102,7 +105,7 @@
 										<p><strong>retraso_tiempo_bloque_maximo_permitido</strong>: Indica en minutos, cuanto es el tiempo máximo de retraso permitido entre el bloque recibido y el tiempo de la máquina, si el tiempo es excedido, el pool se reinicia. Este sistema se usa en los casos en el que el pool quede pegado en algún bloque debido a un fork o por inestabilidad de la red. Por defecto son 10 minutos.</p>
 										<p>La configuración debería verse como en la imagen de abajo.</p>
 										<span class="image featured"><img src="images/wairaconf.jpg" alt="" /></span>
-										<h3>Ejecución</h3>
+										<h3>Ejecución de Waira</h3>
 										<p>Antes de ejecutar el programa es necesario ubicar el archivo "waira" dentro de la carpeta donde se encuentra el jormungandr y el jcli. Para ejecutar Waira debes hacerlo en modo administrador para que pueda interactuar con Systemd.</p>
 										<p><code>sudo ./waira</code></p>
 										<p>En caso de que falte algún requisito para poder funcionar correctamente el programa lo indicara al inicio de éste, como se ve en este ejemplo.  </p>
