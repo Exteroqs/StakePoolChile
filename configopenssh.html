@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="es" xml:lang="es">
+	<head>
+		<title>🦜 TricahuePool</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a id="logo">🦜 Informacion y Tutoriales</a></h1>
+
+					<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li ><a href="index.html">Inicio</a></li>
+							<li class="current">
+								<a>Informacion y Tutoriales</a>
+								<ul>
+									<li><a>Sobre Delegacion</a>
+										<ul>
+											<li><a href="queesladelegacion.html">¿Que es la delegacion?</a></li>
+											<li><a href="comodelegar.html">¿Como Puedo Delegar?</a></li>
+										</ul>
+									</li>
+									<li><a>Tutoriales Tecnicos</a>
+										<ul>
+                                                       <li><a href="compcardanonode.html">Compilando cardano-node</a></li>
+                                                       <li><a href="tjormunsystemd.html">Jormungandr con Systemd</a></li>
+                                                       <li><a href="configopenssh.html">Mejorar la Seguridad en OpenSSH</a></li>
+											<li><a href="iniciardaedalusconnodos.html">Iniciar Daedalus Testnet con/sin trusted peers</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li><a>Mis Programas</a>
+							<ul>
+								<li><a href="waira.html">Waira</a></li>
+							</ul>
+							</li>
+							<li><a>Sobre TricahuePool</a>
+								<ul>
+								<li><a href="activitynews.html">Actividad del Pool</a></li>	
+								<li><a href="mimaquina.html">Mi Pool</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+				</div>
+
+			<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+							<!-- Content -->
+
+								<article>
+
+                                             <header>
+										<h2 style="text-align: center;" >Mejorar la Seguridad en OpenSSH (&gt;=6.7)</h2>
+										<p>En este tutorial se enseñará a configurar OpenSSH (versión 6.7 o mayor) con los parámetros estándar de seguridad propuestos por la fundación Mozilla.</p>
+									</header>
+
+
+<p>En este tutorial se enseñará a configurar OpenSSH (versión 6.7 o mayor) con los parámetros estándar de seguridad propuestos por la fundación Mozilla.</p>
+<p>Muchos de nosotros usamos el protocolo SSH para acceder a nuestros servidores a distancia, es una herramienta útil, pero si no se configura adecuadamente este podría ser un hueco de seguridad que permita a acceso personas no deseadas. Este tutorial usa las configuraciones propuesta por la fundación Mozilla para el programa OpenSSH que gestiona el protocolo SSH, el cual propone sólo el uso llaves públicas y privadas para el inicio de sesión, además de sugerir configuraciones de protocolos de cifrado más seguros.
+Este tutorial se aplica a servidores SSH que ya se encuentran funcionando ya que no enseña las configuraciones basica para montar un servidor SSH desde el inicio.</p>
+<blockquote>
+<p>¡Advertencia!: Una configuración mal puesta en tu servidor SSH puede hacer que pierdas el acceso remoto por medio de SSH, si puedes acceder físicamente a tu máquina para corregir el problema no hay de qué preocuparse, pero si no puedes, te recomiendo tomar tus propias medida en caso de que algo así suceda.</p>
+</blockquote>
+<h3>Creando tu llave pública y privada en Linux</h3>
+<p>Antes de comenzar con las configuraciones se deberán crear las llaves con la que nuestra maquina cliente accederá a nuestro servidor, para ello desde nuestra maquina cliente con Linux se deberá ejecutar el siguiente comando en tu terminal.</p>
+<p><code>mkdir ~/.ssh</code></p>
+<blockquote>
+<p>mkdir se usa para crear la carpeta ./ssh . Ya que en algunas distribuciones Linux no se crea por defecto, si en tu caso ya existiese entonces dará un error avisando que el fichero ya existe.</p>
+</blockquote>
+<p>y luego:</p>
+<p><code>ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_cliente1 -C "Computador de casa"</code></p>
+<p>En el ejemplo se usó un nombre "id_ed25519_cliente1" para el archivo que tendrá las llaves, pero puedes usar el que gustes. En el parámetro de configuración -C es para incluir comentarios dentro del archivo de llaves, en este caso se usó "Computador de casa".</p>
+<p>Una vez ejecutado el comando, durante el proceso de creación te pedirá que ingreses tu contraseña para cifrar el archivo (como se muestra abajo), puedes dejarlo en blanco quedando así sin contraseña o puedes asignarle una, si asignas una, cada vez que te quieras conectar a tu servidor deberás ingresar esa contraseña para usar tu llave privada, nunca la olvides.</p>
+<p style="background-color: beige"><code>Generating public/private ed25519 key pair. <br>
+Enter passphrase (empty for no passphrase): <br>
+Enter same passphrase again: <br>
+Your identification has been saved in /home/tuusuario/.ssh/id_ed25519_cliente1 <br>
+Your public key has been saved in /home/tuusuario/.ssh/id_ed25519_cliente1.pub</code></p>
+<p>Si todo sale bien se crearán dos archivos: "id_ed25519_cliente1" que es el archivo con la llave privada y "id_ed25519_cliente1.pub" que es el archivo con la llave pública.</p>
+<p>Los archivos creados estarán ubicados en una carpeta llamada .ssh que está dentro de tu carpeta de usuario, si escribes en la terminal:</p>
+<p><code>ls ~/.ssh</code></p>
+<p>Te mostrara todos los archivos dentro de esa carpeta .ssh, así que deberías visualizarlos ahí.</p>
+<blockquote>
+<p>En Linux, las carpetas que comienzan con un punto en su nombre, ejemplo .ssh por defecto están ocultas, si deseas verlas desde tu explorador debes fijar las opciones para visualizar carpetas ocultas, en algunas distribuciones se pueden habilitar esa opción con la combinación de teclas CTRL+h .</p>
+</blockquote>
+<h3>Creando tu llave pública y privada en Windows</h3>
+<p>En tu computador cliente que accederá a tu servidor, para crear estas llaves se deberá tener instalado el programa PuTTY que además es de licencia libre por lo que puedes usarlo sin restricciones. Una vez instalado deberás buscar PuTTYgen en tu barra de búsquedas, este programa, que es parte del conjunto de herramientas de PuTTY, nos permite crear nuestras propias llaves públicas y privadas desde Windows.</p>
+<span class="image featured"><img src="images/sshbuscputtygen.jpg" alt="" /></span>
+<p>Una vez abierto PuTTY deberemos configurar sus "Parameters" en Ed25519 y luego dar clic en el boton "Generate".</p>
+<span class="image featured"><img src="images/sshcreaputtygen.jpg" alt="" /></span>
+<p>Mientras se crean las llaves, puedes mover el mouse para darle más aletorialidad a la creación de estas. Después de crearse se pasara a una nueva ventana donde mostrara los datos de esta, en ella podemos agregar un comentario al igual como se hacía en Linux, para este ejemplo pondremos "Computador de casa" y veras que se agrega ese comentario a tu llave publica que aparece en la casilla de arriba, esa llave publica (Que además te lo menciona escrito en inglés), es la que debes copiar y agregar posteriormente a tu servidor en su archivo "authorized_keys", de momento lo puedes copiar y dejar guardado en un block de notas.</p>
+<span class="image featured"><img src="images/sshguardputtygen.jpg" alt="" /></span>
+<p>Ahora solo queda guardar tu llave privada, pero antes si deseas puedes asignar una contraseña a tu llave privada que te pedirá cada vez que te conectes (nunca debes olvidarla), si lo dejas en blanco se guardara sin contraseña, estas contraseñas se ingresan en "Key passphrase" y "Confirm passphrase". Para guardar tu llave privada debes hacer clic en el botón "Save private key" se abrirá una ventana para guardar tu archivo que contiene tu llave privada, elige la ruta que desees y guarda con el nombre que quieras, ten presente poner tu nombre terminando con la extensión .ppk, por ejemplo si deseas guardar el archivo con el nombre computador1, deberás agregar el .ppk, quedando computador1.ppk, luego le das a guardar y listo.</p>
+<h3>Pasando tus llaves públicas a tu servidor SSH</h3>
+<p>Ahora debes copiar tu llave publica a tu servidor e introducirlas en el archivo "authorized_keys" que se encuentra en la carpeta ./ssh en la carpeta de usuario de tu servidor, tomaremos por ejemplo los archivos del computador Linux para hacer este paso, pues no todos están familiarizados con este sistema.</p>
+<p>Desde el computador cliente que tiene Linux, de los dos archivos creado anteriormente el que contiene la llave publica es el que posee la extensión .pub . Para copiar la llave publica tienes dos opciones o lo abres con tu editor de texto preferido el archivo "id_ed25519_cliente1.pub" y copias el contenido que está dentro de él o haces un cat sobre él en la terminal y luego copias la llave que te muestra. Para el siguiente ejemplo se realiza un cat.</p>
+<p><code>cat  ~/.ssh/id_ed25519_cliente1.pub</code></p>
+<p>Eso te mostrara tu llave publica, como en la imagen de a continuación (claro, no será la misma llave).</p>
+<span class="image featured"><img src="images/sshcatpub.jpg" alt="" /></span>
+<p>Toda esa línea es la que deberás copiar y pasarla a tu servidor, como ves, es el mismo formato con la que se muestra tu llave publica en PuTTY desde Windows. Ahora en la terminal de tu <strong>servidor</strong> con nano abres el archivo "authorized_keys".</p>
+<p><code>nano ~/.ssh/authorized_keys</code></p>
+<p>Si este no se encuentra entonces se creará uno en blanco por defecto. Dentro de él pones tu llave publica, <strong>si estas Windows debes seguir este paso y pegar tu llave publica</strong>, debería verse como en la imagen de abajo.</p>
+<span class="image featured"><img src="images/sshcatauth.jpg" alt="" /></span>
+<p>Se guardan los cambios (CTRL+o y luego ENTER) y se cierra nano (CTRL+x), ahora tu <strong>servidor</strong> tiene la llave publica de tu computador cliente y podrá conectarse sin problemas.</p>
+<blockquote>
+<p>Puedes agregar más de una llave publica en el archivo "authorized_keys”. Cada llave publica agregada deberá estar separa por un salto de línea, por ejemplo:</p>
+<p>....... <br>
+llave publica 1 <br>
+llave publica 2 <br>
+llave publica 3 <br>
+......</p>
+<p>Así puedes tener computadores con llaves privadas individuales que se conectaran a tu servidor.</p>
+</blockquote>
+<h3>Configuración de tu Servidor SSH</h3>
+<p>Editamos la configuración del archivo "sshd_config" en tu servidor, abrimos con nano (o con tu editor preferido).</p>
+<p><code>mkdir ~/.ssh</code></p>
+<blockquote>
+<p>mkdir se usa para crear la carpeta ./ssh . Ya que en algunas distribuciones Linux no se crea por defecto, si en tu caso ya existiese entonces dará un error avisando que el fichero ya existe.</p>
+</blockquote>
+<p>y luego:</p>
+<p><code>sudo nano /etc/ssh/sshd_config</code></p>
+<p>Dentro de este archivo de configuración encontraras varios parámetros, tendremos que editar los que ya están y agregar los que falten, así que debes mirarlo detenidamente para no repetir la misma configuración. Las configuraciones que debes editar o agregar en caso de que no estén son las siguientes:</p>
+<p style="background-color: beige">HostKey /etc/ssh/ssh_host_ed25519_key <br>
+HostKey /etc/ssh/ssh_host_rsa_key <br>
+HostKey /etc/ssh/ssh_host_ecdsa_key <br>
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256 <br>
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr <br>
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com <br>
+AuthenticationMethods password publickey <br>
+LogLevel VERBOSE <br>
+Subsystem sftp  /usr/lib/ssh/sftp-server -f AUTHPRIV -l INFO <br>
+PermitRootLogin No <br>
+UsePrivilegeSeparation sandbox</p>
+<p>El texto de arriba puede verse replegado en tu explorador web, por lo que puse una imagen abajo de como deberían verse estas instrucciones, una por cada línea.</p>
+<span class="image featured"><img src="images/sshconfig1.jpg" alt="" /></span>
+<blockquote>
+<p>Por Seguridad dejaras por el momento configurado tu servidor SSH para que puedas ingresar con contraseña y llaves, una vez que pruebes que las llaves conectan bien lo configuras para que solo use las llaves.</p>
+<p>Para que acepte contraseñas y llaves, la configuración es:</p>
+<p>AuthenticationMethods password publickey</p>
+<p>Para que acepte solo llaves, la configuración es:</p>
+<p>AuthenticationMethods publickey</p>
+</blockquote>
+<p>Una vez editado el archivo con esas configuraciones se guardan los cambios (CTRL+o y luego ENTER) y se cierra nano (CTRL+x).</p>
+<p>Ahora ingresas el siguiente comando en la terminal para configurar todos los Diffie-Hellman moduli y así estos moduli sean al menos de un mínimo de 3072-bit-long.</p>
+<p>Para introducir el siguente comando en la terminal, se debe estar en el usuario root, en ubuntu sería:</p>
+<p><code>sudo su</code></p>
+<p>Ingresas la contraseña de administrador que te pide y ahora pon el siguiente comando en la terminal.</p>
+<p><code>awk '$5 &gt;= 3071' /etc/ssh/moduli &gt; /etc/ssh/moduli.tmp &amp;&amp; mv /etc/ssh/moduli.tmp /etc/ssh/moduli</code></p>
+<blockquote>
+<p>Todo este comando se debe ingresar en el terminal en una sola línea, sin saltos de línea o se generara un error.</p>
+</blockquote>
+<p>Ahora sale del usuario root.</p>
+<p><code>exit</code></p>
+<p>Ahora reinicias el servidor OpenSSH con un:</p>
+<p><code>sudo systemctl restart ssh</code></p>
+<h3>Configuración del cliente SSH con PuTTY (Windows)</h3>
+<p>Lo importante aquí es tener el <strong>archivo que contiene nuestra llave privada</strong> en el computador que usaremos para conectarnos al servidor, porque si no lo tienes no te podrás conectar a él y si no puedes acceder físicamente a tu servidor entonces no habrá forma de cambiar esa configuración, ten presente eso.</p>
+<blockquote>
+<p>Si tienes configurado tu servidor SSH para que aceptes contraseña y llaves, podrás acceder de ambas formas, así que no deberías de preocuparte. Si ves que tu llave privada conecta bien entonces puedes configurar ahora tu servidor para que solo acepte llaves, que es lo recomendado.</p>
+</blockquote>
+<p>Para este ejemplo configuraremos el cliente con Putty de Windows.</p>
+<p>Abres PuTTY y se mostrara lo siguiente por defecto.</p>
+<span class="image featured"><img src="images/sshputty.jpg" alt="" /></span>
+<p>Ahora nos dirigimos a la opción "Auth" que está dentro de la categoría "SSH" como se muestra en la imagen.</p>
+<span class="image featured"><img src="images/sshputtyconf.jpg" alt="" /></span>
+<p>En Browser buscas el archivo que contiene tu llave privada con la extensión .ppk, una vez ubicado, vamos a la ventana que estabas antes haciendo clic en la categoría "Session".</p>
+<span class="image featured"><img src="images/sshputtyconf2.jpg" alt="" /></span>
+<p>Ingresas la IP de tu servidor y el puerto al que te conectaras, selecciona el tipo de conexión en SSH y luego has clic en "Open" se cargara un terminal, si tu llave privada la creaste con una contraseña entonces ahí te la pedirá, la ingresas, después apretas ENTER y ya deberías conectar.</p>
+<h3>Configuración del cliente SSH con Linux</h3>
+<p>Para configurar tu cliente en Linux deberás editar el archivo "config" que está en la ruta "/home/tuusuario/.shh", lo abrimos usando el editor de texto nano.</p>
+<p><code>nano ~/.ssh/config</code></p>
+<p>Ahí dentro introduces lo siguiente (teniendo de ejemplo la llave privada ya hecha en los ejemplos anteriores, el id_ed25519_cliente1):</p>
+<p style="background-color: beige"> <code> #Configuracion de la conexion <br>
+Host aqui.va.la.direccion.ip.o.url <br>
+     HostName aqui.va.la.direccion.ip.o.url <br>
+     User tuusuariodelhost <br>
+     Port aqui.tu.puerto <br>
+IdentityFile ~/.ssh/id_ed25519_cliente1 <br>
+#Configuracion de los protocolos de cifrado <br>
+HashKnownHosts yes <br>
+HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256 <br>
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256 <br>
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com <br>
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr </code></p>
+<p>Se debería ver parecido a la imagen de a continuación:</p>
+<span class="image featured"><img src="images/sshclilinux.jpg" alt="" /></span>
+<p>Una vez editado el archivo con esas configuraciones se guardan los cambios (CTRL+o y luego ENTER) y se cierra nano (CTRL+x).</p>
+<p>Ahora te puedes conectar usando:</p>
+<p><code>ssh aqui.va.la.direccion.ip.o.url</code></p>
+<p>y listo, para cerrar tu conexión debes escribir "exit" en el terminal.</p>
+<h3>Ahora solo con llave privada</h3>
+<p>Ahora que ya ves que tus llaves funcionan bien, procedes a configurar tú servidor ssh para que solo funcione con ellas</p>
+<p>Para eso entras nuevamente a tu servidor usando tus llaves y editas el archivo sshd_config con nano</p>
+<p><code>sudo nano /etc/ssh/sshd_config</code></p>
+<p>y deja la configuracion AuthenticationMethods asi:</p>
+<p><code>AuthenticationMethods publickey</code></p>
+<p>guardas los cambios y reinicia el servidor ssh</p>
+<p><code>sudo systemctl restart ssh</code></p>
+<p>Listo! de ahora en adelante solo podras entrar con tus llaves privadas, haciendo mas dificil la entrada de gente no deseada a tu servidor.</p>
+<blockquote>Referencias:<br>https://infosec.mozilla.org/guidelines/openssh</blockquote>
+<blockquote>
+     <p>Si deseas apoyarme para seguir creando más contenido en español, puedes hacerlo delegando en mi Pool.</p>
+</blockquote>
+		
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<div id="footer">
+
+               <!-- Icons -->
+               <ul class="icons">
+                    <li><a href="https://github.com/Exteroqs/Waira" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                    <li><a href="mailto:tricahuepool@protonmail.com" class="icon social fa-envelope"><span class="label">E-Mail</span></a></li>
+                    <li><a href="https://vimeo.com/tricahuepool" class="icon brands fa-vimeo"><span class="label">Youtube</span></a></li>
+               </ul>
+<!-- Copyright -->
+<div class="copyright">
+<ul class="menu">
+     <li>&copy; TricahuePool 2019. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a>
+</ul>
+</div>
+
+</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
