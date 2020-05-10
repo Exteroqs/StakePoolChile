@@ -75,7 +75,7 @@
 									
 
 									<p>Systemd es un sistema para correr y gestionar servicios en Linux, en este manual aprenderás a convertir a jormungandr en un servicio del sistema esto te permitirá manejarlo con mayor facilidad e incluso poder arrancarlo automaticamente al inicio del sistema operativo.</p>
-									<h2>Archivo de configuración</h2>
+									<h2> <ins>Archivo de configuración</ins> </h2>
 									<p>Se procede a crear un archivo de configuración para nuestro servicio, el que llamaremos "jormungandr.service" y lo guardaremos en la ruta "/etc/systemd/system/". Ejecutamos el editor de texto nano en modo administrador para poder crear un archivo en esa ruta.</p>
 									<p><code>sudo nano /etc/systemd/system/jormungandr.service</code></p>
 									<blockquote>
@@ -131,7 +131,7 @@
 									<blockquote>
 									<p>En nano para guardar una modificación se usa la combinación de teclas "CTRL+o" y luego confirmas con un "ENTER”, para salir se usa "CTRL+x".</p>
 									</blockquote>
-									<h2>Ejecutando el servicio</h2>
+									<h2> <ins>Ejecutando el servicio</ins> </h2>
 									<p>Una vez guardado los cambios de nuestro archivo de configuración estamos listos para ejecutar nuestro servicio, recuerda ejecutar siempre en modo administrador los comandos de a continuación, en ubuntu por ejemplo se antepone un sudo para ejecutar algo en modo administrador.</p>
 									<h4>Iniciar el servicio</h4>
 									<p><code>sudo systemctl start jormungandr</code></p>
