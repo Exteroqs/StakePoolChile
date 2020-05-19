@@ -119,13 +119,14 @@ sudo cp /opt/ghc/8.6.5/bin/hpc /usr/bin/hpc</code></p>
 <h3>Compilando cardano-node</h3>
 <p>Primero deberás hacer una actualización de los repositorios de cabal, en tu terminal escribe.</p>
 <p><code>cabal update</code></p>
-<p>Ahora se procede a descargar el cardano-node, existen dos opciones, hacerlo mediante git o descargarlo directamente desde la pagina oficial en Github <a href="https://github.com/input-output-hk/cardano-node/releases">https://github.com/input-output-hk/cardano-node/releases</a> , en este tutorial se descargara desde git, que es lo que recomiendan los manuales oficiales para la etapa de F&F. Primero creas un carpeta con el nombre de tu preferencia, el nombre debe ir sin espacios, para este ejemplo usaremos "shelley_haskell". </p>
+<p>Ahora se procede a descargar el cardano-node, existen dos opciones, hacerlo mediante git o descargarlo directamente desde la página oficial en Github <a href="https://github.com/input-output-hk/cardano-node/releases">https://github.com/input-output-hk/cardano-node/releases</a> , en este tutorial se descargara desde git, que es lo que recomiendan los manuales oficiales para la etapa de F&F. Primero creas un carpeta con el nombre de tu preferencia, el nombre debe ir sin espacios, para este ejemplo usaremos "shelley_haskell". </p>
 <p><code>mkdir shelley_haskell</code></p>
-<p>Ahora entras en esa carpeta y con git descargamos cardano-node</p>
+<p>Ahora entras en esa carpeta y con git descargamos cardano-node.</p>
 <p style="background-color: beige"><code>cd shelley_haskell</code><br>
 <code>git clone https://github.com/input-output-hk/cardano-node.git</code></p>
-<p>Cuando termine de descargar, en el directorio habra una carpeta llamada cardano-node, es ahí donde debes entrar, y desde ahí dentro ejecutar en tu terminal el siguiente comando:</p>
+<p>Cuando termine de descargar, en el directorio habrá una carpeta llamada cardano-node, es ahí donde debes entrar, y desde ahí dentro ejecutar en tu terminal el comando "git fetch --all --tags" y "git checkout tags/pioneer", esto es para usar el tag pioneer dentro de la testnet FF:</p>
 <p style="background-color: beige">
+<code>cd cardano-node</code><br>
  <code>git fetch --all --tags</code><br> 
  <code>git checkout tags/pioneer</code> 	
 </p>
