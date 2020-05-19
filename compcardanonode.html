@@ -71,7 +71,7 @@
 										<h2 style="text-align: center;" >Compilando cardano-node</h2>
 										<p>Esta guía te enseña a compilar cardano-node versión haskell desde un computador con Linux basado en distribuciones Debian (Ubuntu, Kubuntu, debian9, entre otros).</p>
 									</header>
-<p>Esta guía se probó en un computador con Debian 9 y con la versión cardano-node-1.9.3.</p>
+<p>Esta guía se probó en un computador con Debian 9.</p>
 <h3>Instalar Cabal y GHC</h3>
 <p>Antes de comenzar quisiera poner en contexto estos dos programas, ya que es bueno saber de sus funciones. El gch es un compilador para código Haskell como lo es g++ para el código C++ y cabal es un constructor de paquetes como podría ser el MakeFile en Linux. Ahora sabiendo esto, procedemos a agregar los repositorios nesesarios para instalar estos programas.</p>
 <h4><u>Agregando los repositorios:</u></h4>
@@ -119,11 +119,21 @@ sudo cp /opt/ghc/8.6.5/bin/hpc /usr/bin/hpc</code></p>
 <h3>Compilando cardano-node</h3>
 <p>Primero deberás hacer una actualización de los repositorios de cabal, en tu terminal escribe.</p>
 <p><code>cabal update</code></p>
-<p>Ahora se descomprime el archivo cardano-node-X.X.X.tar.gz descargado de los <a href="https://github.com/input-output-hk/cardano-node/releases">repositorios de GitHub</a> , en este tutorial se descargó la versión "cardano-node-1.9.3.tar.gz”, al descomprimirse aparece una carpeta llamada cardano-node-1.9.3, dentro de esa carpeta hay otra carpeta con el nombre de cardano-node, es ahí donde debes entrar, y desde ahí dentro ejecutar en tu terminal el siguiente comando:</p>
-<p><code>cabal build</code></p>
-<p>Por ejemplo debería verse algo similar en tu terminal: <br> <i>tuusuario@tuusuario:~/cualquier/ubicación/<strong>cardano-node-1.9.3/cardano-node</strong>$ <code>cabal build</code> </i> </p>
-<p>Una vez que termine de compilar (según el computador el tiempo de compilación puede variar, en mi caso demoro 2 horas aprox con un procesador intel coreduo 2.2ghz), ve a la siguiente ubicación dentro de tu carpeta, para este ejemplo es la carpeta "cardano-node-1.9.3".</p>
-<p><code>cardano-node-1.9.3/dist-newstyle/build/x86_64-linux/ghc-8.6.5/cardano-node-1.9.3/x</code></p>
+<p>Ahora se procede a descargar el cardano-node, existen dos opciones, hacerlo mediante git o descargarlo directamente desde la pagina oficial en Github <a href="https://github.com/input-output-hk/cardano-node/releases">https://github.com/input-output-hk/cardano-node/releases</a> , en este tutorial se descargara desde git, que es lo que recomiendan los manuales oficiales para la etapa de F&F. Primero creas un carpeta con el nombre de tu preferencia, el nombre debe ir sin espacios, para este ejemplo usaremos "shelley_haskell". </p>
+<p><code>mkdir shelley_haskell</code></p>
+<p>Ahora entras en esa carpeta y con git descargamos cardano-node</p>
+<p style="background-color: beige"><code>cd shelley_haskell</code><br>
+<code>git clone https://github.com/input-output-hk/cardano-node.git</code></p>
+<p>Cuando termine de descargar, en el directorio habra una carpeta llamada cardano-node, es ahí donde debes entrar, y desde ahí dentro ejecutar en tu terminal el siguiente comando:</p>
+<p style="background-color: beige">
+ <code>git fetch --all --tags</code><br> 
+ <code>git checkout tags/pioneer</code> 	
+</p>
+<p>Ahora para compilar se ingresa el siguente comando</p>
+<p><code>cabal build all</code></p>
+<p>Por ejemplo debería verse algo similar en tu terminal: <br> <i>tuusuario@tuusuario:~/cualquier/ubicación/cardano-node</strong>$ <code>cabal build all</code> </i> </p>
+<p>Una vez que termine de compilar (según el computador el tiempo de compilación puede variar, en mi caso demoro 2 horas aprox con un procesador intel coreduo 2.2ghz), ve a la siguiente ubicación dentro de tu carpeta, para este ejemplo es la carpeta "cardano-node".</p>
+<p><code>cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.6.5/cardano-node-1.9.3/x</code></p>
 <p>Ahí encontraras las carpetas:</p>
 <p><code>cardano-cli  cardano-node  chairman</code></p>
 <p>y dentro de ellas estarán los archivos compilados en sus respectivas carpetas "build".</p>
