@@ -128,16 +128,16 @@ sudo cp /opt/ghc/8.6.5/bin/hpc /usr/bin/hpc</code></p>
 <p style="background-color: beige">
 <code>cd cardano-node</code><br>
  <code>git fetch --all --tags</code><br> 
- <code>git checkout tags/pioneer</code> 	
+ <code>git checkout tags/1.13.0</code> 	
 </p>
 <p>Ahora para compilar se ingresa el siguente comando</p>
 <p><code>cabal build all</code></p>
 <p>Por ejemplo debería verse algo similar en tu terminal: <br> <i>tuusuario@tuusuario:~/cualquier/ubicación/cardano-node</strong>$ <code>cabal build all</code> </i> </p>
 <p>Una vez que termine de compilar (según el computador el tiempo de compilación puede variar, en mi caso demoro 2 horas aprox con un procesador intel coreduo 2.2ghz), ve a la siguiente ubicación dentro de tu carpeta, para este ejemplo es la carpeta "cardano-node".</p>
-<p><code>cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.6.5/cardano-node-1.9.3/x</code></p>
+<p><code>cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.6.5/</code></p>
 <p>Ahí encontraras las carpetas:</p>
-<p><code>cardano-cli  cardano-node  chairman</code></p>
-<p>y dentro de ellas estarán los archivos compilados en sus respectivas carpetas "build".</p>
+<p><code>cardano-node-1.13.0 cardano-cli-1.13.0</code></p>
+<p>y dentro de ellas estarán los archivos compilados en sus respectivas carpetas "x/cardano-node/build/cardano-node/" y "x/cardano-cli/build/cardano-cli" .</p>
 <p>Felicidades tienes tu nodo Haskell compilado para tu sistema.</p>
 <p>Eso es todo por ahora.</p>
 
