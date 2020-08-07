@@ -124,19 +124,21 @@ sudo cp /opt/ghc/8.6.5/bin/hpc /usr/bin/hpc</code></p>
 <p>Ahora entras en esa carpeta y con git descargamos cardano-node.</p>
 <p style="background-color: beige"><code>cd shelley_haskell</code><br>
 <code>git clone https://github.com/input-output-hk/cardano-node.git</code></p>
-<p>Cuando termine de descargar, en el directorio habrá una carpeta llamada cardano-node, es ahí donde debes entrar, y desde ahí dentro ejecutar en tu terminal el comando "git fetch --all --tags" y "git checkout tags/pioneer", esto es para usar el tag pioneer dentro de la testnet FF:</p>
+<p>Cuando termine de descargar, en el directorio habrá una carpeta llamada cardano-node, es ahí donde debes entrar, y desde ahí dentro ejecutar en tu terminal el comando "git fetch --all --tags" y "git tag", esteo desplegara todos los tags disponibles, para este tutorial se usara el tag 1.18, por lo que lo seleccionamos con "git checkout tags/1.18.0"</p>
 <p style="background-color: beige">
 <code>cd cardano-node</code><br>
- <code>git fetch --all --tags</code><br> 
- <code>git checkout tags/1.13.0</code> 	
+ <code> git fetch --all --tags && git tag</code><br> 
+ <code>git checkout tags/1.18.0</code> 	
 </p>
+<p>antes de proceder a compilar se debera enlazar la libreria libsodium para que pueda compilar sin errores</p>
+<code>echo -e "package cardano-crypto-praos\n flags: -external-libsodium-vrf" > cabal.project.local</code>
 <p>Ahora para compilar se ingresa el siguente comando</p>
-<p><code>cabal build all</code></p>
+<p><code>cabal build cardano-node cardano-cli</code></p>
 <p>Por ejemplo debería verse algo similar en tu terminal: <br> <i>tuusuario@tuusuario:~/cualquier/ubicación/cardano-node</strong>$ <code>cabal build all</code> </i> </p>
 <p>Una vez que termine de compilar (según el computador el tiempo de compilación puede variar, en mi caso demoro 2 horas aprox con un procesador intel coreduo 2.2ghz), ve a la siguiente ubicación dentro de tu carpeta, para este ejemplo es la carpeta "cardano-node".</p>
 <p><code>cardano-node/dist-newstyle/build/x86_64-linux/ghc-8.6.5/</code></p>
 <p>Ahí encontraras las carpetas:</p>
-<p><code>cardano-node-1.13.0 cardano-cli-1.13.0</code></p>
+<p><code>cardano-node-1.18.0 cardano-cli-1.18.0</code></p>
 <p>y dentro de ellas estarán los archivos compilados en sus respectivas carpetas "x/cardano-node/build/cardano-node/" y "x/cardano-cli/build/cardano-cli" .</p>
 <p>Felicidades tienes tu nodo Haskell compilado para tu sistema.</p>
 <p>Eso es todo por ahora.</p>
