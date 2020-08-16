@@ -5,132 +5,177 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html lang="es" xml:lang="es">
-	<head>
-		<title>🦜 TricahuePool</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
-		<div id="page-wrapper">
 
-			<!-- Header -->
-				<div id="header">
+<head>
+	<title>🦜 TricahuePool</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+</head>
 
-					<!-- Logo -->
-						<h1><a id="logo">🦜 Informacion y Tutoriales</a></h1>
+<body class="is-preload">
+	<div id="page-wrapper">
 
-					<!-- Nav -->
-					<nav id="nav">
+		<!-- Header -->
+		<div id="header">
+
+			<!-- Logo -->
+			<h1><a id="logo">🦜 Informacion y Tutoriales</a></h1>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="index_en.html">Translate to English</a></li>
+					<li><a href="index.html">Inicio</a></li>
+					<li class="current">
+						<a>Informacion y Tutoriales</a>
 						<ul>
-							<li ><a href="index.html">Inicio</a></li>
-							<li class="current">
-								<a>Informacion y Tutoriales</a>
+							<li><a>Sobre Delegacion</a>
 								<ul>
-									<li><a>Sobre Delegacion</a>
-										<ul>
-											<li><a href="queesladelegacion.html">¿Que es la delegacion?</a></li>
-											<li><a href="comodelegar.html">¿Como Puedo Delegar?</a></li>
-										</ul>
-									</li>
-									<li><a>Tutoriales Tecnicos</a>
-										<ul>
-											<li><a href="compcardanonode.html">Compilando cardano-node</a></li>
-											<li><a href="tjormunsystemd.html">Jormungandr con Systemd</a></li>
-											<li><a href="configopenssh.html">Mejorar la Seguridad en OpenSSH</a></li>
-								 <li><a href="iniciardaedalusconnodos.html">Iniciar Daedalus Testnet con/sin trusted peers</a></li>
-										</ul>
-									</li>
+									<li><a href="queesladelegacion.html">¿Que es la delegacion?</a></li>
+									<li><a href="comodelegar.html">¿Como Puedo Delegar?</a></li>
 								</ul>
 							</li>
-							<li><a>Mis Programas</a>
-							<ul>
-								<li><a href="waira.html">Waira</a></li>
-							</ul>
-							</li>
-							<li><a>Sobre TricahuePool</a>
+							<li><a>Tutoriales Tecnicos</a>
 								<ul>
-								<li><a href="activitynews.html">Actividad del Pool</a></li>	
-								<li><a href="mimaquina.html">Mi Pool</a></li>
+									<li><a href="compcardanonode.html">Compilando cardano-node</a></li>
+									<li><a href="tjormunsystemd.html">Jormungandr con Systemd</a></li>
+									<li><a href="configopenssh.html">Mejorar la Seguridad en OpenSSH</a></li>
+									<li><a href="iniciardaedalusconnodos.html">Iniciar Daedalus Testnet con/sin trusted
+											peers</a></li>
 								</ul>
 							</li>
 						</ul>
-					</nav>
+					</li>
+					<li><a>Mis Programas</a>
+						<ul>
+							<li><a href="waira.html">Waira</a></li>
+						</ul>
+					</li>
+					<li><a>Sobre TricahuePool</a>
+						<ul>
+							<li><a href="activitynews.html">Actividad del Pool</a></li>
+							<li><a href="mimaquina.html">Mi Pool</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+
+		</div>
+
+		<!-- Main -->
+		<section class="wrapper style1">
+			<div class="container">
+				<div id="content">
+
+					<!-- Content -->
+
+					<article>
+						<header>
+							<h2 style="text-align: center;">Iniciar Daedalus Testnet con/sin trusted peers</h2>
+							<p>En esta guía se enseña como disminuir los intentos de conexión con los trusted peers o
+								sincronizar directamente con los nodos de la red .</p>
+						</header>
+
+
+						<p>A muchos nos ha pasado que cuando iniciamos la billetera Daedalus se nos queda pegado
+							sincronizando infinitamente en la pantalla de carga, eso es debido a que aveces la billetera
+							tiene problemas en conectar con los trusted peers oficiales, las causas de por que fallan
+							los peers no se detallara aquí en el tutorial.</p>
+						<p>En la versión de Daedalus 2.3.0 se incorpora el cliente jormungander 0.8.13 para gestionar la
+							sincronización con la cadena de bloques de Cardano, es un cliente más estable, pero tiene un
+							pequeño talón de Aquiles , que por defecto cuando no puede conectar con un trusted peers
+							realiza intentos indefinidamente con la esperanza de conseguir concretar su conexión, por lo
+							que si intenta conectar con algún peers que está mal funcionando se quedara reintentando
+							indefinidamente hasta que él pueda descargar los datos, para estos casos podemos agregar una
+							configuración a la billetera para que evite realizar estos reintentos o limitarlos a un
+							intento por trusted peers, eso puede quedar a criterio de cada uno, en el caso de que no
+							quieras realizar intentos de conexión con los trusted peers, la billetera comenzara a
+							sincronizarse con los nodos disponibles en la red Cardano, es un proceso más lento pero es
+							más efectivo.</p>
+						<p>Este tutorial está hecho para usuarios de Windows, pero la configuración es aplicable para
+							usuarios de Linux u otros sistemas, solo deberás buscar el archivo de configuración en tu
+							sistema correspondiente.</p>
+						<p>Primero debemos abrir el block de notas en modo administrador, busca el block de notas en tu
+							barra de búsqueda y una vez sobre él haz CTRL+click derecho y te dará la opción para abrirlo
+							en modo administrador.</p>
+						<span class="image featured"><img src="images/cdae1.jpg" alt="" /></span>
+						<p>Una vez abierto block de notas ve a "Archivo-&gt;Abrir" y ve a la dirección de instalación de
+							tu billetera que en Windows es:</p>
+						<p><code>C:\Program Files\Daedalus - Rewards v1</code></p>
+						<p>Una vez ahí busca el archivo:</p>
+						<p><code>jormungandr-config.yaml</code></p>
+						<p>Procura tener seleccionado "Todos los archivos *<em>.*</em>" para que puedas verlo, ahora que
+							lo tienes , ábrelo.</p>
+						<span class="image featured"><img src="images/cdae2.jpg" alt="" /></span>
+						<p>Una vez abierto se mostraran varias instrucciones amontonadas en el block de notas pero no te
+							preocupes puesto que el block de notas de Windows no sabe ordenar esos formatos en JSON, si
+							lo abres desde una distribución Linux es probable que se vea todo ordenado, lo importante
+							aquí es poner la configuración donde debe ir, así que agregaremos la configuración :</p>
+						<p><code>"max_bootstrap_attempts": 1</code></p>
+						<p>Dentro de la sección "p2p", en este tutorial lo hemos seteado en 1 , que significa que hará
+							un intento de conexión por cada trusted peers de la lista (que aparece en el archivo de
+							configuración) antes de pasar a sincronizarse con los otros nodos de la red. Deberás
+							colocarlo en la misma posición que aparece en la imagen respetando sus comas.</p>
+						<span class="image featured"><img src="images/cdae3.jpg" alt="" /></span>
+						<p>Si deseas saltarte los trusted peers y sincronizar directamente con los nodos de la red, que
+							igual es recomendable en los casos que ya tengas gran parte de la cadena de bloques
+							sincronizada, los podemos setear a cero.</p>
+						<p><code>"max_bootstrap_attempts": 0</code></p>
+						<p>Hay que recordar que al sincronizarse directamente con los nodos es un poco más lento, pero
+							cuando los trusted peers dan problemas es más efectivo.</p>
+						<p>Una vez seteada la configuración de tu preferencia (sea a 1 o a 0), se guardan los cambios y
+							se abre la billetera Daedalus, Ahora solo queda esperar a que se cargue.</p>
+						<p>Si seteaste el "max_bootstrap_attempts" a 0, una vez que comienza a sincronizar, en la parte
+							del diagnóstico puedes ver los "Last network block" y los "Last synchronized block", estos
+							últimos puedes ver que de apoco se van actualizando hasta alcanzar el valor de los "Last
+							network block".</p>
+						<span class="image featured"><img src="images/cdae5.jpg" alt="" /></span>
+						<p>Eso es todo, espero que este turorial les sea de ayuda y puedan abrir sus billeteras sin
+							problemas de ahora en adelante.</p>
+						<blockquote>
+							<p>Si deseas apoyarme para seguir creando más contenido en español, puedes hacerlo delegando
+								en mi Pool. </p>
+						</blockquote>
+					</article>
 
 				</div>
+			</div>
+		</section>
 
-			<!-- Main -->
-				<section class="wrapper style1">
-					<div class="container">
-						<div id="content">
+		<!-- Footer -->
+		<div id="footer">
+			<!-- Icons -->
+			<ul class="icons">
+				<li><a href="https://github.com/Eztero/Waira" class="icon brands fa-github"><span
+							class="label">GitHub</span></a></li>
+				<li><a href="mailto:tricahuepool@protonmail.com" class="icon social fa-envelope"><span
+							class="label">E-Mail</span></a></li>
+				<li><a href="https://vimeo.com/tricahuepool" class="icon brands fa-vimeo"><span
+							class="label">Vimeo</span></a></li>
+				<li><a href="https://twitter.com/TCHPool" class="icon brands fa-twitter"><span
+							class="label">Twitter</span></a></li>
+			</ul>
+			<!-- Copyright -->
+			<div class="copyright">
+				<ul class="menu">
+					<li>&copy; TricahuePool 2019. All rights reserved</li>
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a>
+				</ul>
+			</div>
 
-                            <!-- Content -->
-                            
-                            <article>
-                                <header>
-                                    <h2 style="text-align: center;" >Iniciar Daedalus Testnet con/sin trusted peers</h2>
-                                    <p>En esta guía se enseña como disminuir los intentos de conexión con los trusted peers o sincronizar directamente con los nodos de la red .</p>
-                                </header>
+		</div>
 
+	</div>
 
-<p>A muchos nos ha pasado que cuando iniciamos la billetera Daedalus se nos queda pegado sincronizando infinitamente en la pantalla de carga, eso es debido a que aveces la billetera tiene problemas en conectar con los trusted peers oficiales, las causas de por que fallan los peers no se detallara aquí en el tutorial.</p>
-<p>En la versión de Daedalus 2.3.0 se incorpora el cliente jormungander 0.8.13 para gestionar la sincronización con la cadena de bloques de Cardano, es un cliente más estable, pero tiene un pequeño talón de Aquiles , que por defecto cuando no puede conectar con un trusted peers realiza intentos indefinidamente con la esperanza de conseguir concretar su conexión, por lo que si intenta conectar con algún peers que está mal funcionando se quedara reintentando indefinidamente hasta que él pueda descargar los datos, para estos casos podemos agregar una configuración a la billetera para que evite realizar estos reintentos o limitarlos a un intento por trusted peers, eso puede quedar a criterio de cada uno, en el caso de que no quieras realizar intentos de conexión con los trusted peers, la billetera comenzara a sincronizarse con los nodos disponibles en la red Cardano, es un proceso más lento pero es más efectivo.</p>
-<p>Este tutorial está hecho para usuarios de Windows, pero la configuración es aplicable para usuarios de Linux u otros sistemas, solo deberás buscar el archivo de configuración en tu sistema correspondiente.</p>
-<p>Primero debemos abrir el block de notas en modo administrador, busca el block de notas en tu barra de búsqueda y una vez sobre él haz CTRL+click derecho y te dará la opción para abrirlo en modo administrador.</p>
-<span class="image featured"><img src="images/cdae1.jpg" alt="" /></span>
-<p>Una vez abierto block de notas ve a "Archivo-&gt;Abrir" y ve a la dirección de instalación de tu billetera que en Windows es:</p>
-<p><code>C:\Program Files\Daedalus - Rewards v1</code></p>
-<p>Una vez ahí busca el archivo:</p>
-<p><code>jormungandr-config.yaml</code></p>
-<p>Procura tener seleccionado "Todos los archivos *<em>.*</em>" para que puedas verlo, ahora que lo tienes , ábrelo.</p>
-<span class="image featured"><img src="images/cdae2.jpg" alt="" /></span>
-<p>Una vez abierto se mostraran varias instrucciones amontonadas en el block de notas pero no te preocupes puesto que el block de notas de Windows no sabe ordenar esos formatos en JSON, si lo abres desde una distribución Linux es probable que se vea todo ordenado, lo importante aquí es poner la configuración donde debe ir, así que agregaremos la configuración :</p>
-<p><code>"max_bootstrap_attempts": 1</code></p>
-<p>Dentro de la sección "p2p", en este tutorial lo hemos seteado en 1 , que significa que hará un intento de conexión por cada trusted peers de la lista (que aparece en el archivo de configuración) antes de pasar a sincronizarse con los otros nodos de la red. Deberás colocarlo en la misma posición que aparece en la imagen respetando sus comas.</p>
-<span class="image featured"><img src="images/cdae3.jpg" alt="" /></span>
-<p>Si deseas saltarte los trusted peers y sincronizar directamente con los nodos de la red, que igual es recomendable en los casos que ya tengas gran parte de la cadena de bloques sincronizada, los podemos setear a cero.</p>
-<p><code>"max_bootstrap_attempts": 0</code></p>
-<p>Hay que recordar que al sincronizarse directamente con los nodos es un poco más lento, pero cuando los trusted peers dan problemas es más efectivo.</p>
-<p>Una vez seteada la configuración de tu preferencia (sea a 1 o a 0), se guardan los cambios y se abre la billetera Daedalus, Ahora solo queda esperar a que se cargue.</p>
-<p>Si seteaste el "max_bootstrap_attempts" a 0, una vez que comienza a sincronizar, en la parte del diagnóstico puedes ver los "Last network block" y los "Last synchronized block", estos últimos puedes ver que de apoco se van actualizando hasta alcanzar el valor de los "Last network block".</p>
-<span class="image featured"><img src="images/cdae5.jpg" alt="" /></span>
-<p>Eso es todo, espero que este turorial les sea de ayuda y puedan abrir sus billeteras sin problemas de ahora en adelante.</p>
-<blockquote>
-    <p>Si deseas apoyarme para seguir creando más contenido en español, puedes hacerlo delegando en mi Pool. </p>
-</blockquote>
-</article>
-
-</div>
-</div>
-</section>
-
-<!-- Footer -->
-<div id="footer">
-										<!-- Icons -->
-										<ul class="icons">
-											<li><a href="https://github.com/Eztero/Waira" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-											<li><a href="mailto:tricahuepool@protonmail.com" class="icon social fa-envelope"><span class="label">E-Mail</span></a></li>
-											<li><a href="https://vimeo.com/tricahuepool" class="icon brands fa-vimeo"><span class="label">Vimeo</span></a></li>
-											<li><a href="https://twitter.com/TCHPool" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										</ul>
-<!-- Copyright -->
-<div class="copyright">
-    <ul class="menu">
-        <li>&copy; TricahuePool 2019. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a>
-    </ul>
-</div>
-
-</div>
-
-</div>
-
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.dropotron.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.dropotron.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
 
 </body>
+
 </html>
