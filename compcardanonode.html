@@ -96,7 +96,7 @@
 <p><code>sudo apt update</code></p>
 <h2>Instalando las Dependencias</h2>
 <p>Ahora procedemos a instalar las dependencias necesarias para compilar nuestro nodo, en tu terminal escribe.</p>
-<p><code>sudo apt install cabal-install-3.0 ghc-8.6.5 libsystemd-dev zlib1g-dev pkg-config libgmp-dev libssl-dev libtinfo-dev</code></p>
+<p><code>sudo apt install cabal-install-3.0 ghc-8.6.5 libsystemd-dev zlib1g-dev pkg-config libgmp-dev libssl-dev libtinfo-dev libsodium-dev</code></p>
 <p>Ahora copiamos los Simlink de los programas que se instalaron en la carpeta /opt/cabal/bin/ y /opt/ghc/bin/ y los pasas a tu carpeta /usr/bin/ para que el sistema pueda detectarlos, también se copian los 3 ejecutables que están en la carpeta "8.6.5". Para ello en tu terminal cada línea de a continuación ejecútala por separado.</p>
 <p><code>sudo cp /opt/cabal/bin/cabal /usr/bin/cabal <br>
 sudo cp /opt/ghc/bin/ghc /usr/bin/ghc <br>
